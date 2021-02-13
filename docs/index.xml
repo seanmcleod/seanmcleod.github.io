@@ -6,7 +6,17 @@
     <description>Recent content on Sean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Jun 2008 15:50:59 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jan 2018 19:47:36 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Max Q - Maximum Dynamic Pressure</title>
+      <link>https://seanmcleod.github.io/2018/01/max-q-maximum-dynamic-pressure/</link>
+      <pubDate>Wed, 10 Jan 2018 19:47:36 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/01/max-q-maximum-dynamic-pressure/</guid>
+      <description>During a rocket launch the commentator will often call out &amp;ldquo;Max Q&amp;rdquo; at a specific point in time during the launch. This is the point at which the dynamic pressure acting on the rocket will be at it&amp;rsquo;s maximum.
+The dynamic pressure or Q is the product of the air-density and the velocity squared of the object travelling through the air.</description>
+    </item>
+    
     <item>
       <title>Geeks and Fast Jets</title>
       <link>https://seanmcleod.github.io/2008/06/geeks-and-fast-jets/</link>
