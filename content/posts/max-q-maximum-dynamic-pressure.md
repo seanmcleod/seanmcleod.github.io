@@ -19,7 +19,7 @@ The SI unit for pressure is the pascal. One pascal is the pressure exerted by a 
 SpaceX provide a webcast of their launches which includes a simple telemetry display showing the 
 rocket's current speed and altitude.
 
-![image alt text](/spacexjcsat14webcast.png)
+![image alt text](/images/max-q-maximum-dynamic-pressure/spacexjcsat14webcast.png)
 
 Using the International Standard Atmosphere model to lookup the density at each altitude reported in 
 the telemetry and using the reported velocity at that point we can calculate the dynamic pressure for 
@@ -28,7 +28,7 @@ which point in terms of altitude and velocity the rocket experiences it's maximu
 
 Here is a graph based on telemetry data from SpaceX's JCSAT-14 launch.
 
-![image alt text](/spacex-jcsat14-standard-atmosphere.png)
+![image alt text](/images/max-q-maximum-dynamic-pressure/spacex-jcsat14-standard-atmosphere.png)
 
 The maximum dynamic pressure (Max-Q) experienced is roughly 30 kPa at an altitude of roughly 11.5 km 
 while travelling at a speed of 1500 km/h.
@@ -40,7 +40,7 @@ throttled back significantly to 72% for a couple of seconds.
 This is done to limit the maximum dynamic pressure that the Space Shuttle will need to handle during 
 a launch.
 
-![image alt text](/nasasts124standardatmosphere.png)
+![image alt text](/images/max-q-maximum-dynamic-pressure/nasasts124standardatmosphere.png)
 
 The maximum dynamic pressure experienced by the Space Shuttle is roughly 35 kPa at an altitude of roughly 
 10.8 km and travelling at a speed of roughly 1550 km/h. So in the same ballpark in terms of altitude and 
@@ -57,7 +57,7 @@ So assuming there isn't any significant wind I'm assuming that the ground speed 
 Then again using the International Standard Atmosphere (ISA) we can lookup the density for the specific 
 altitude and use that to calculate the dynamic pressure.
 
-![image alt text](/airlinerstandardatmosphere.png)
+![image alt text](/images/max-q-maximum-dynamic-pressure/airlinerstandardatmosphere.png)
 
 So it looks like the maximum dynamic pressure is experienced at cruising altitude and cruising speed and 
 roughly peaks around 25 kPa. In other words an airliner's maximum dynamic pressure that it experiences is 

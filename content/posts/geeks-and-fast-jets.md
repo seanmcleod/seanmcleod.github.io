@@ -3,7 +3,7 @@ title: "Geeks and Fast Jets"
 date: 2008-06-08T15:50:59+02:00
 ---
 
-![image alt text](/Hunter1.jpg)
+![image alt text](/images/geeks-and-fast-jets/Hunter1.jpg)
 
 I was approached recently to help develop some Flight Test Instrumentation (FTI) for a 
 Hawker Hunter jet to be used during a test pilot course involving high angle of attack 
@@ -29,7 +29,7 @@ then physically mounted on a pitot/static boom which was then mounted on the fro
 Hunter's nose. One minor issue was finding a route for the wires from the vanes to the PC in the 
 avionics bay that didn't have to pass through the cockpit's pressure capsule.
 
-![image alt text](/HunterVanes.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterVanes.jpg)
 
 **Attitude** - ordered an Attitude and Heading Reference System (AHRS) from Crossbow that uses 
 solid state sensors and outputs at 25Hz. Ideally the AHRS needs to be mounted as close as possible 
@@ -46,8 +46,8 @@ cable to the avionics bay.
 Wasn't ideal since it's maximum indicated airspeed is 217kt which means it was maxed out a lot of the time. 
 However the stall speed was generally below 217kt so it did provide useful data during the stall and spin.
 
-![image alt text](/HunterAvionicsBay1.jpg) 
-![image alt text](/HunterAvionicsBay2.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterAvionicsBay1.jpg) 
+![image alt text](/images/geeks-and-fast-jets/HunterAvionicsBay2.jpg)
 
 **Control positions** - we ordered 3 linear transducers which basically have a shaft that moves in and 
 out and it acts as a potentiometer. They were mounted and attached to the 3 control rods that pass through 
@@ -73,7 +73,7 @@ The embedded PC also came with 4 onboard RS232 ports which we needed in order to
 sensors (AHRS, GPS, air data). To read the analog data from the AoA, sideslip and control position sensors we 
 installed an A/D card into the single PCI slot.
 
-![image alt text](/HunterPCDownload.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterPCDownload.jpg)
 
 # Display
 
@@ -90,17 +90,17 @@ The one issue or complication with the 'spin panel' display being mounted in the
 passing through the pressure bulkhead from the avionics bay into the cockpit. Special bulkhead connectors have to 
 be used in order to pass the wires through without causing a pressure leak.
 
-![image alt text](/HunterSpinPanel.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterSpinPanel.jpg)
 
-![image alt text](/HunterSpinPanel2.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterSpinPanel2.jpg)
 
-![image alt text](/HunterCockpit.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterCockpit.jpg)
 
 # Video
 An SD based video camera recorder with a remote lens was mounted in the cockpit and used to capture video footage 
 of the flight.
 
-![image alt text](/HunterVideoCamera.jpg)
+![image alt text](/images/geeks-and-fast-jets/HunterVideoCamera.jpg)
 
 # Playback
 The last part of the project involved the development of a playback system to take the captured data from the sensors 
@@ -114,10 +114,10 @@ All of the data including the video is synchronised during playback and can be p
 speeds, i.e. various slow motion and fast motion playback speeds. The playback application is a Windows Presentation Foundation (WPF) 
 application and makes heavy use of the animation framework within WPF.
 
-![image alt text](/FTIPlaybackApp1.jpg)
+![image alt text](/images/geeks-and-fast-jets/FTIPlaybackApp1.jpg)
 
 And finally getting ready for the last of the 34 sorties on a glorious Cape Town winter's day.
 
-![image alt text](/Hunter2.jpg)
+![image alt text](/images/geeks-and-fast-jets/Hunter2.jpg)
 
 
