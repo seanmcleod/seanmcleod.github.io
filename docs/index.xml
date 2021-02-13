@@ -6,7 +6,16 @@
     <description>Recent content on Sean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jan 2018 19:47:36 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jun 2018 23:05:27 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camera Tracking of Aircraft Control Positions</title>
+      <link>https://seanmcleod.github.io/2018/06/camera-tracking-of-aircraft-control-positions/</link>
+      <pubDate>Sat, 02 Jun 2018 23:05:27 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/06/camera-tracking-of-aircraft-control-positions/</guid>
+      <description>The standard method of tracking the aircraft&amp;rsquo;s control positions as the pilot moves the controls for flight test instrumentation (FTI) purposes is to attach string potentiometers (string pots) to the control cables/rods. As the control cable/rod moves based on the pilot&amp;rsquo;s inputs a spring loaded thin steel wire is reeled in or out of the string pot.</description>
+    </item>
+    
     <item>
       <title>Max Q - Maximum Dynamic Pressure</title>
       <link>https://seanmcleod.github.io/2018/01/max-q-maximum-dynamic-pressure/</link>
