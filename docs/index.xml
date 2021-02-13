@@ -17,6 +17,16 @@
     </item>
     
     <item>
+      <title>Extra 300 Spin</title>
+      <link>https://seanmcleod.github.io/2018/05/extra-300-spin/</link>
+      <pubDate>Thu, 17 May 2018 23:36:47 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/05/extra-300-spin/</guid>
+      <description>This is an example of the data collected by my Homebrew FTI (Flight Test Instrumentation) system during a spin in an Extra-300.
+The control positions were tracked using a camera based tracking system that I developed and the output from the camera tracking units were fed into the FTI unit.</description>
+    </item>
+    
+    <item>
       <title>Max Q - Maximum Dynamic Pressure</title>
       <link>https://seanmcleod.github.io/2018/01/max-q-maximum-dynamic-pressure/</link>
       <pubDate>Wed, 10 Jan 2018 19:47:36 +0200</pubDate>
