@@ -64,38 +64,52 @@
 {{ $dateFormat := default "Mon Jan 2, 2006" (index .Site.Params "date_format") }}
 
 <article class="blog-post">
-  <header>
-    <h2 class="blog-post-title" dir="auto"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
-    <p class="blog-post-meta">
-{{ if not .PublishDate.IsZero }}<time {{ .Date.Format "2006-01-02T15:04:05Z07:00" | printf "datetime=%q" | safeHTMLAttr }}>{{ .Date.Format $dateFormat }}</time>{{ end }}
-{{ if or (.Params.categories) (.Params.tags) }} {{ i18n "postedIn" }} {{ partial "meta-terms.html" . }}{{ end }}</p>
-  </header>
-  {{ .Content }}
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
+        <p class="blog-post-meta">
+            {{ if not .PublishDate.IsZero }}<time {{ .Date.Format "2006-01-02T15:04:05Z07:00" | printf "datetime=%q" | safeHTMLAttr }}>{{ .Date.Format $dateFormat }}</time>{{ end }}
+            {{ if or (.Params.categories) (.Params.tags) }} {{ i18n "postedIn" }} {{ partial "meta-terms.html" . }}{{ end }}
+        </p>
+    </header>
 
-  {{ if .IsTranslated }}
-  <h4>{{ i18n "translations" }}</h4>
-  <ul>
-    {{ range .Translations }}
-    <li>
-      <a href="{{ .Permalink }}">{{ .Lang }}: {{ .Title }}{{ if .IsPage }}{{ end }}</a>
-    </li>
+    <!-- top of page for math equations -->
+    {{ if .GetParam "hasMath"}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
     {{ end }}
-  </ul>
-  {{ end }}
 
-  {{ if or (ne ($.Param "sharingicons") false) (.Site.DisqusShortname) }}
-  <hr>
-  <footer>
+    {{ .Content }}
 
-  {{ if (ne ($.Param "sharingicons") false) }}
-  {{ partial "sharing-icons.html" . }}
-  {{ end }}
+    {{ if .IsTranslated }}
+    <h4>{{ i18n "translations" }}</h4>
+    <ul>
+        {{ range .Translations }}
+        <li>
+            <a href="{{ .Permalink }}">{{ .Lang }}: {{ .Title }}{{ if .IsPage }}{{ end }}</a>
+        </li>
+        {{ end }}
+    </ul>
+    {{ end }}
 
-  {{ if and (.Site.DisqusShortname) (ne .Params.comments false) }}
-  {{ template "_internal/disqus.html" . }}
-  {{ end }}
-  </footer>
-  {{ end }}
+    <!-- bottom of page for math equations -->
+    {{ if .GetParam "hasMath"}}
+    <script>renderMathInElement(document.body);</script>
+    {{ end }}
+
+    {{ if or (ne ($.Param "sharingicons") false) (.Site.DisqusShortname) }}
+    <hr>
+    <footer>
+
+        {{ if (ne ($.Param "sharingicons") false) }}
+        {{ partial "sharing-icons.html" . }}
+        {{ end }}
+
+        {{ if and (.Site.DisqusShortname) (ne .Params.comments false) }}
+        {{ template "_internal/disqus.html" . }}
+        {{ end }}
+    </footer>
+    {{ end }}
 
 </article> <!-- /.blog-post -->
 
