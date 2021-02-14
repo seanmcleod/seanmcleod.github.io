@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta property="og:title" content="MH-370 Forward Tracking" />
+<meta property="og:description" content="The last reported location for MH-370 from Malaysian military radar is N6.6381 E96.408 at 18:22UTC. If we assume some maximum ground speed for the next 78 minutes until the 19:40UTC satellite ping then the intersection of the maximum aircraft range from the time of the last radar contact until the 19:40UTC satellite ping will define the northernmost and southernmost points on the 19:40UTC ping ring that the aircraft could have reached." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://seanmcleod.github.io/2014/04/mh-370-forward-tracking/" />
+<meta property="article:published_time" content="2014-04-25T15:08:55+02:00" />
+<meta property="article:modified_time" content="2014-04-25T15:08:55+02:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MH-370 Forward Tracking"/>
+<meta name="twitter:description" content="The last reported location for MH-370 from Malaysian military radar is N6.6381 E96.408 at 18:22UTC. If we assume some maximum ground speed for the next 78 minutes until the 19:40UTC satellite ping then the intersection of the maximum aircraft range from the time of the last radar contact until the 19:40UTC satellite ping will define the northernmost and southernmost points on the 19:40UTC ping ring that the aircraft could have reached."/>
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MH-370 Forward Tracking",
+  "url": "https://seanmcleod.github.io/2014/04/mh-370-forward-tracking/",
+  "wordCount": "969",
+  "datePublished": "2014-04-25T15:08:55+02:00",
+  "dateModified": "2014-04-25T15:08:55+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Sean McLeod"
+  }
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://seanmcleod.github.io/2014/04/mh-370-forward-tracking/">
+
+    <title>MH-370 Forward Tracking | Sean&#39;s Blog</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://seanmcleod.github.io/css/style.beb8012edc08ba10be012f079d618dc243812267efe62e11f22fe49618f976a4.css" rel="stylesheet" integrity="sha256-vrgBLtwIuhC&#43;AS8HnWGNwkOBImfv5i4R8i/klhj5dqQ=" crossorigin="anonymous">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://seanmcleod.github.io/js/fontawesome.min.ffbfea088a9a1666ec65c3a8cb4906e2a0e4f92dc70dbbf400a125ad2422123a.js" integrity="sha256-/7/qCIqaFmbsZcOoy0kG4qDk&#43;S3HDbv0AKElrSQiEjo=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://seanmcleod.github.io/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://seanmcleod.github.io/" rel="home">Sean's Blog</a></h1>
+        <p class="lead blog-description" dir="auto">A simple Hugo theme based on the Bootstrap v4 blog example.</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2014/04/mh-370-forward-tracking/">MH-370 Forward Tracking</a></h2>
+        <p class="blog-post-meta">
+            <time datetime="2014-04-25T15:08:55+02:00">Fri Apr 25, 2014</time>
+            
+        </p>
+    </header>
+
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    
+
+    <p>The last reported location for MH-370 from Malaysian military radar is N6.6381 E96.408 at 18:22UTC.
+If we assume some maximum ground speed for the next 78 minutes until the 19:40UTC satellite ping
+then the intersection of the maximum aircraft range from the time of the last radar contact until
+the 19:40UTC satellite ping will define the northernmost and southernmost points on the 19:40UTC
+ping ring that the aircraft could have reached. Effectively turning the 19:40UTC ping ring into
+an arc.</p>
+<p>The following plot shows the possible positions for the aircraft at 19:40UTC as blue dots on the
+ping ring based on a maximum ground speed of 520kts from the time of the last radar contact. The
+blue dots in this plot along the ping ring are spaced 1 degree apart in bearing from the satellite
+sub-point at 19:40UTC.</p>
+<p><img src="/images/mh-370-forward-tracking/1940-ping-arc.png" alt="image alt text"></p>
+<p>The subsequent 4 satellite pings at 20:40UTC, 21:40UTC, 22:40UTC and 00:11UTC show the aircraft being
+further away from the satellite at each ping.</p>
+<p>What I&rsquo;ve done is to write a simple Python program that takes an assumed constant ground speed as input
+and then starting with each starting point indicated by the blue dots on the 19:40UTC ping arc tries to
+fit a projected ground track at that speed to all the subsequent ping rings.</p>
+<p>It does that simply by for each starting point iterating over all possible ground tracks from 0-359 degrees
+in 1 degree increments and working out the resulting ground position at the time of each of the subsequent
+satellite pings. If there is a match to within a user defined error range, at the moment set at 4% then it
+plots that ground track.</p>
+<p>I&rsquo;ve plotted the resulting possible ground tracks for 3 different ground speeds from 19:40UTC onwards,
+350kt, 400kt and 450kt.</p>
+<p>You can see why the initial &lsquo;red arcs&rsquo; that Inmarsat released based on the 00:11UTC ping had a gap between them.</p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-350kt-doppler-filter-false.png" alt="image alt text"></p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-400kt-doppler-filter-false.png" alt="image alt text"></p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-450kt-doppler-filter-false.png" alt="image alt text"></p>
+<p>In addition to the being able to determine a range to the satellite for each ping Inmarsat also recorded the
+frequency change due to the Doppler effect at the time of each ping. The Doppler shift data in effect allows
+you to work out what the LOS (Line Of Sight) speed was between the aircraft&rsquo;s position and velocity and the
+satellite&rsquo;s position and velocity.</p>
+<p>The authorities released a graph showing the BFO (Burst Frequency Offset) recorded for each satellite ping.
+Mike Exner with the help of Duncan Steele have converted these into LOS speeds for each ping.</p>
+<p>So my idea was to then filter out the possible ground tracks shown in the plots above by only including those
+that also matched the Doppler data for each ping.</p>
+<p>Given the satellite&rsquo;s 3D position (SPx, SPy, SPz) and velocity (SVx, SVy, SVz) and the aircraft&rsquo;s
+position (APx, APy, APz) and velocity (AVx, AVy, AVz) then the LOS speed between them can be calculated
+as follows.</p>
+
+<span class="jsonly">
+     
+        $$P = \begin{pmatrix} SPx - APx\\ SPy - APy\\ SPz - APz \end{pmatrix}$$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?P%20%3d%20%5cbegin%7bpmatrix%7d%20SPx%20-%20APx%5c%5c%20SPy%20-%20APy%5c%5c%20SPz%20-%20APz%20%5cend%7bpmatrix%7d" title="P = \begin{pmatrix} SPx - APx\\ SPy - APy\\ SPz - APz \end{pmatrix}" />
+        </div>
+    
+</noscript>
+
+
+<span class="jsonly">
+     
+        $$V = \begin{pmatrix} SVx - AVx\\ SVy - AVy\\ SVz - AVz \end{pmatrix}$$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?V%20%3d%20%5cbegin%7bpmatrix%7d%20SVx%20-%20AVx%5c%5c%20SVy%20-%20AVy%5c%5c%20SVz%20-%20AVz%20%5cend%7bpmatrix%7d" title="V = \begin{pmatrix} SVx - AVx\\ SVy - AVy\\ SVz - AVz \end{pmatrix}" />
+        </div>
+    
+</noscript>
+
+
+<span class="jsonly">
+     
+        $$LOS\ speed = \frac{V \cdot P}{|P|}$$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?LOS%5c%20speed%20%3d%20%5cfrac%7bV%20%5ccdot%20P%7d%7b%7cP%7c%7d" title="LOS\ speed = \frac{V \cdot P}{|P|}" />
+        </div>
+    
+</noscript>
+
+<p>The following plots show the result of including the Doppler data to filter out ground tracks that don&rsquo;t match
+both the satellite ping rings and the LOS speed derived from the Doppler data.</p>
+<p>However unfortunately in order for any tracks to match based on the Doppler data I had to increase the error
+margin for the Doppler data to 50-95% compared to the 4% used for the ping ring positions.</p>
+<p>The Doppler error margin used for each of the plots is included in the plot title, 50% for 350kt, 70% for
+400kt and 95% for 450kt.</p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-350kt-doppler-filter-50.png" alt="image alt text"></p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-400kt-doppler-filter-70.png" alt="image alt text"></p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-450kt-doppler-filter-95.png" alt="image alt text"></p>
+<p>All three of the plots above only show southern routes matching both the ping rings and the Doppler data. However
+if I drop the ground speed to 300kt and use a Doppler error margin of 70% then some of the northern routes also match.</p>
+<p><img src="/images/mh-370-forward-tracking/mh370-forwardtrack-300kt-doppler-filter-70.png" alt="image alt text"></p>
+<p>Given the need to use such large error margins for the Doppler data filtering I see 3 main possibilities.</p>
+<ul>
+<li>
+<p>I&rsquo;ve made a mistake in some of the calculations in my program. Feel free to look at the source code and point
+any errors out.</p>
+</li>
+<li>
+<p>I&rsquo;ve made a typing error when entering some of the data into the program, e.g. the satellite co-ordinates,
+velocities etc. Again take a look at the source code and let me know if you spot any such errors.</p>
+</li>
+<li>
+<p>The data I&rsquo;m relying on isn&rsquo;t accurate.</p>
+</li>
+</ul>
+<p>In terms of the data I&rsquo;m relying on most of it has been derived by others rather than coming directly from the authorities.
+In terms of the ping ring ranges the authorities have only released the elevation angle of 40 degrees for the last ping
+at 00:11UTC. All the other ping ring ranges have been calculated by someone digitizing a plot that the authorities released
+showing a possible 450kt and 400kt route that the aircraft could&rsquo;ve taken. The assumption being that the two possible ground
+tracks matched the ping ring range data that Inmarsat had.</p>
+<p>The authorities haven&rsquo;t released the LOS speeds based on the Doppler data for each of the pings. Instead they&rsquo;ve only released
+a graph showing the Burst Frequency Offsets (BFO) recorded and others in particular Mike Exner have then tried to work backwards
+to calculate the LOS speed. However there is a lot of debate regarding the accuracy of this process mainly based on the assumptions used.</p>
+<p>I&rsquo;ve sourced all my data from Duncan Steele&rsquo;s blog at <a href="http://www.duncansteel.com">www.duncansteel.com</a></p>
+<p>In particular the satellite position and velocity data can be found at - <a href="http://www.duncansteel.com/archives/397">www.duncansteel.com/archives/397</a></p>
+<table>
+<thead>
+<tr>
+<th>Time            </th>
+<th>Ping Ring Range      </th>
+<th>LOS Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19:40 UTC</td>
+<td>1762nm</td>
+<td>-53.74kt</td>
+</tr>
+<tr>
+<td>20:40 UTC</td>
+<td>1805nm</td>
+<td>-70.87kt</td>
+</tr>
+<tr>
+<td>21:40UTC</td>
+<td>1962nm</td>
+<td>-84.20kt</td>
+</tr>
+<tr>
+<td>22:40UTC</td>
+<td>2199nm</td>
+<td>-97.14kt</td>
+</tr>
+<tr>
+<td>00:11UTC</td>
+<td>2642nm</td>
+<td>-111.18kt</td>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p>The source code for my program, only about 100 lines of Python can be found at - <a href="https://gist.github.com/seanmcleod/11271193">Python source code</a></p>
+
+
+    
+
+    
+    
+    <script>renderMathInElement(document.body);</script>
+    
+
+    
+    <hr>
+    <footer>
+
+        
+          <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2014%2f04%2fmh-370-forward-tracking%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2014%2f04%2fmh-370-forward-tracking%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2014%2f04%2fmh-370-forward-tracking%2f&amp;text=MH-370%20Forward%20Tracking" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+        
+
+        
+    </footer>
+    
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p dir="auto">Semi-random posts on technology and aviation.</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+
+
+<li style="margin-bottom:8px;" ><a href="/2018/06/camera-tracking-of-aircraft-control-positions/">Camera Tracking of Aircraft Control Positions</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/05/extra-300-spin/">Extra 300 Spin</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/homebrew-fti/">Homebrew FTI</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/pitch-rate-damping-jsbsim-test/">Pitch Rate Damping - JSBSim Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/01/max-q-maximum-dynamic-pressure/">Max Q - Maximum Dynamic Pressure</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2017/11/modelica-simple-rocket-test/">Modelica - Simple Rocket Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2014/04/mh-370-forward-tracking/">MH-370 Forward Tracking</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/06/geeks-and-fast-jets/">Geeks and Fast Jets</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
