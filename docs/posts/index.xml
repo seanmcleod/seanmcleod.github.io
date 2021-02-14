@@ -133,5 +133,16 @@ The following data needed to be recorded:
 The initial version doesn&amp;rsquo;t include any automatic parallelism across multiple CPUs or clusters of machines.</description>
     </item>
     
+    <item>
+      <title>High Dynamic Range (HDR) Photo Test</title>
+      <link>https://seanmcleod.github.io/high-dynamic-range-photo-test/</link>
+      <pubDate>Mon, 31 Dec 2007 21:13:18 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/high-dynamic-range-photo-test/</guid>
+      <description>I started playing around with generating HDR photos. Here is one of my first attempts using our Pentax DSLR.
+I&amp;rsquo;m using a trial version of Photomatix to perform the HDR processing and tone mapping which is why you&amp;rsquo;ll notice their watermark in the HDR image below.
+I set the auto-bracketing option on the camera to shoot a normal exposure, a -2 stop exposure and a +2 stop exposure.</description>
+    </item>
+    
   </channel>
 </rss>
