@@ -175,5 +175,14 @@ Remote control keys:
  Panning - use the arrow keys Zooming - use the channel +- keys Map Style - use the 1,2,3 keys to toggle map styles between road, aerial and hybrid  In addition since the text labels on the map have been sized for viewing on a regular monitor with a 2 foot experience I&amp;rsquo;ve added a local zoom option.</description>
     </item>
     
+    <item>
+      <title>Indexing your complete browser history hsing MSN Desktop Search</title>
+      <link>https://seanmcleod.github.io/2005/07/indexing-your-complete-browser-history-hsing-msn-desktop-search/</link>
+      <pubDate>Sat, 16 Jul 2005 21:56:54 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2005/07/indexing-your-complete-browser-history-hsing-msn-desktop-search/</guid>
+      <description>The MSN Desktop Search application is an evolutionary version of the standard Indexing Service that has been shipping as part of Windows since Windows 2000. They both make use of the same IFilter components to allow third parties to add indexing support for their file formats. One of the standard IFilter components is one that parses html documents.</description>
+    </item>
+    
   </channel>
 </rss>
