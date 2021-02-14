@@ -103,6 +103,16 @@ The latest version of Windows Live Photo Gallery now includes a specific &amp;ls
     </item>
     
     <item>
+      <title>Bitmap Snapshots of WPF Visuals</title>
+      <link>https://seanmcleod.github.io/2008/10/bitmap-snapshots-of-wpf-visuals/</link>
+      <pubDate>Tue, 07 Oct 2008 17:46:40 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2008/10/bitmap-snapshots-of-wpf-visuals/</guid>
+      <description>Recently I needed to create a bitmap of some WPF controls to be used in another program. Doing a quick search turned up references to the RenderTargetBitmap class in WPF with sample code along the lines of:
+RenderTargetBitmap bmp = new RenderTargetBitmap((int)element.Width, (int)element.Height, 96, 96, PixelFormats.Pbgra32); bmp.Render(element); However if the WPF control had a margin then the rendered bitmap had transparent pixels for the margin area.</description>
+    </item>
+    
+    <item>
       <title>Geeks and Fast Jets</title>
       <link>https://seanmcleod.github.io/2008/06/geeks-and-fast-jets/</link>
       <pubDate>Sun, 08 Jun 2008 15:50:59 +0200</pubDate>

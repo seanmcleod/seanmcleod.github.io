@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta property="og:title" content="Bitmap Snapshots of WPF Visuals" />
+<meta property="og:description" content="Recently I needed to create a bitmap of some WPF controls to be used in another program. Doing a quick search turned up references to the RenderTargetBitmap class in WPF with sample code along the lines of:
+RenderTargetBitmap bmp = new RenderTargetBitmap((int)element.Width, (int)element.Height, 96, 96, PixelFormats.Pbgra32); bmp.Render(element); However if the WPF control had a margin then the rendered bitmap had transparent pixels for the margin area." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://seanmcleod.github.io/2008/10/bitmap-snapshots-of-wpf-visuals/" />
+<meta property="article:published_time" content="2008-10-07T17:46:40+02:00" />
+<meta property="article:modified_time" content="2008-10-07T17:46:40+02:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bitmap Snapshots of WPF Visuals"/>
+<meta name="twitter:description" content="Recently I needed to create a bitmap of some WPF controls to be used in another program. Doing a quick search turned up references to the RenderTargetBitmap class in WPF with sample code along the lines of:
+RenderTargetBitmap bmp = new RenderTargetBitmap((int)element.Width, (int)element.Height, 96, 96, PixelFormats.Pbgra32); bmp.Render(element); However if the WPF control had a margin then the rendered bitmap had transparent pixels for the margin area."/>
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Bitmap Snapshots of WPF Visuals",
+  "url": "https://seanmcleod.github.io/2008/10/bitmap-snapshots-of-wpf-visuals/",
+  "wordCount": "213",
+  "datePublished": "2008-10-07T17:46:40+02:00",
+  "dateModified": "2008-10-07T17:46:40+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Sean McLeod"
+  }
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://seanmcleod.github.io/2008/10/bitmap-snapshots-of-wpf-visuals/">
+
+    <title>Bitmap Snapshots of WPF Visuals | Sean&#39;s Blog</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://seanmcleod.github.io/css/style.beb8012edc08ba10be012f079d618dc243812267efe62e11f22fe49618f976a4.css" rel="stylesheet" integrity="sha256-vrgBLtwIuhC&#43;AS8HnWGNwkOBImfv5i4R8i/klhj5dqQ=" crossorigin="anonymous">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://seanmcleod.github.io/js/fontawesome.min.ffbfea088a9a1666ec65c3a8cb4906e2a0e4f92dc70dbbf400a125ad2422123a.js" integrity="sha256-/7/qCIqaFmbsZcOoy0kG4qDk&#43;S3HDbv0AKElrSQiEjo=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://seanmcleod.github.io/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://seanmcleod.github.io/" rel="home">Sean's Blog</a></h1>
+        <p class="lead blog-description" dir="auto">A simple Hugo theme based on the Bootstrap v4 blog example.</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2008/10/bitmap-snapshots-of-wpf-visuals/">Bitmap Snapshots of WPF Visuals</a></h2>
+        <p class="blog-post-meta">
+            <time datetime="2008-10-07T17:46:40+02:00">Tue Oct 07, 2008</time>
+            
+        </p>
+    </header>
+
+    
+    
+
+    <p>Recently I needed to create a bitmap of some WPF controls to be used in another program. Doing a quick
+search turned up references to the RenderTargetBitmap class in WPF with sample code along the lines of:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">    RenderTargetBitmap bmp = <span style="color:#66d9ef">new</span> RenderTargetBitmap((<span style="color:#66d9ef">int</span>)element.Width, 
+        (<span style="color:#66d9ef">int</span>)element.Height, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">96</span>, PixelFormats.Pbgra32);
+    bmp.Render(element);
+</code></pre></div><p>However if the WPF control had a <strong>margin</strong> then the rendered bitmap had transparent pixels for the margin area.
+As an example here is a button inside a <strong>StackPanel</strong> with a <strong>margin</strong> applied.</p>
+<p><img src="/images/bitmap-snapshots-of-wpf-visuals/image_thumb.jpg" alt="image alt text"></p>
+<p>And the following is the bitmap that is created via the sample code above:</p>
+<p><img src="/images/bitmap-snapshots-of-wpf-visuals/image_thumb2.jpg" alt="image alt text"></p>
+<p>Doing some more searching turned up the following code which creates a <strong>VisualBrush</strong> from the target <strong>Visual</strong> and
+then renders that into a <strong>DrawingVisual</strong> and then finally uses <strong>RenderTargetBitmap</strong> to take a snapshot of the
+<strong>DrawingVisual</strong>. Using this approach the <strong>margins</strong> are ignored and the bitmap only consists of the target WPF
+control/visual as shown below:</p>
+<p><img src="/images/bitmap-snapshots-of-wpf-visuals/image_thumb3.jpg" alt="image alt text"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">void</span> CreateBitmapFromVisual(Visual target, <span style="color:#66d9ef">string</span> filename) 
+{ 
+    <span style="color:#66d9ef">if</span> (target == <span style="color:#66d9ef">null</span>) 
+        <span style="color:#66d9ef">return</span>; 
+
+    Rect bounds = VisualTreeHelper.GetDescendantBounds(target);
+
+    RenderTargetBitmap rtb = <span style="color:#66d9ef">new</span> RenderTargetBitmap((Int32)bounds.Width, 
+                (Int32)bounds.Height, <span style="color:#ae81ff">96</span>, <span style="color:#ae81ff">96</span>, PixelFormats.Pbgra32); 
+    
+    DrawingVisual dv = <span style="color:#66d9ef">new</span> DrawingVisual(); 
+    
+    <span style="color:#66d9ef">using</span> (DrawingContext dc = dv.RenderOpen()) 
+    { 
+        VisualBrush vb = <span style="color:#66d9ef">new</span> VisualBrush(target); 
+        dc.DrawRectangle(vb, <span style="color:#66d9ef">null</span>, <span style="color:#66d9ef">new</span> Rect(<span style="color:#66d9ef">new</span> Point(), bounds.Size)); 
+    } 
+
+    rtb.Render(dv);
+
+    PngBitmapEncoder png = <span style="color:#66d9ef">new</span> PngBitmapEncoder();
+
+    png.Frames.Add(BitmapFrame.Create(rtb));
+
+    <span style="color:#66d9ef">using</span> (Stream stm = File.Create(filename))
+    {
+        png.Save(stm);
+    }
+}
+</code></pre></div>
+
+    
+
+    
+    
+
+    
+    <hr>
+    <footer>
+
+        
+          <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2008%2f10%2fbitmap-snapshots-of-wpf-visuals%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2008%2f10%2fbitmap-snapshots-of-wpf-visuals%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2008%2f10%2fbitmap-snapshots-of-wpf-visuals%2f&amp;text=Bitmap%20Snapshots%20of%20WPF%20Visuals" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+        
+
+        
+    </footer>
+    
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p dir="auto">Semi-random posts on technology and aviation.</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+
+
+<li style="margin-bottom:8px;" ><a href="/2018/06/camera-tracking-of-aircraft-control-positions/">Camera Tracking of Aircraft Control Positions</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/05/extra-300-spin/">Extra 300 Spin</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/homebrew-fti/">Homebrew FTI</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/pitch-rate-damping-jsbsim-test/">Pitch Rate Damping - JSBSim Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/01/max-q-maximum-dynamic-pressure/">Max Q - Maximum Dynamic Pressure</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2017/11/modelica-simple-rocket-test/">Modelica - Simple Rocket Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2014/04/mh-370-forward-tracking/">MH-370 Forward Tracking</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2014/04/mh-370-back-tracking/">MH-370 Back Tracking</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/10/live-photo-gallery-people-tags/">Live Photo Gallery People Tags</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/10/bitmap-snapshots-of-wpf-visuals/">Bitmap Snapshots of WPF Visuals</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/06/geeks-and-fast-jets/">Geeks and Fast Jets</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
