@@ -155,6 +155,16 @@ I had previously used the Windows Desktop Search API to write a music browser an
     </item>
     
     <item>
+      <title>Virtualearth Add in for Windows Media Center with Geocoded Pictures</title>
+      <link>https://seanmcleod.github.io/2005/11/virtualearth-add-in-for-windows-media-center-with-geocoded-pictures/</link>
+      <pubDate>Thu, 10 Nov 2005 21:48:08 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2005/11/virtualearth-add-in-for-windows-media-center-with-geocoded-pictures/</guid>
+      <description>As I mentioned in my previous post I have a basic Virtual Earth add-in for Windows Media Center that works within the Media Center UI and is usable with the remote control.
+I&amp;rsquo;ve now added support for integrating geocoded pictures with the Virtual Earth add-in. So next time someone asks you where a particular photo was taken while watching a slide show you can pop-up the Virtual Earth add-in which will center the map on the photo&amp;rsquo;s location and show a pushpin on the map.</description>
+    </item>
+    
+    <item>
       <title>Virtual Earth Media Center Add In</title>
       <link>https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/</link>
       <pubDate>Sat, 05 Nov 2005 21:38:41 +0200</pubDate>

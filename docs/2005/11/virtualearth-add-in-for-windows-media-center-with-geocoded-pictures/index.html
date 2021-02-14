@@ -6,22 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<meta property="og:title" content="Virtual Earth Media Center Add In" />
-<meta property="og:description" content="I&rsquo;ve been playing around with a VirtualEarth HTML add-in for Windows Media Center. I&rsquo;ve got a number of features lined up but I&rsquo;ve been side tracked with other work so I&rsquo;ve only got the basics implemented so far.
-Remote control keys:
- Panning - use the arrow keys Zooming - use the channel &#43;- keys Map Style - use the 1,2,3 keys to toggle map styles between road, aerial and hybrid  In addition since the text labels on the map have been sized for viewing on a regular monitor with a 2 foot experience I&rsquo;ve added a local zoom option." />
+<meta property="og:title" content="Virtualearth Add in for Windows Media Center with Geocoded Pictures" />
+<meta property="og:description" content="As I mentioned in my previous post I have a basic Virtual Earth add-in for Windows Media Center that works within the Media Center UI and is usable with the remote control.
+I&rsquo;ve now added support for integrating geocoded pictures with the Virtual Earth add-in. So next time someone asks you where a particular photo was taken while watching a slide show you can pop-up the Virtual Earth add-in which will center the map on the photo&rsquo;s location and show a pushpin on the map." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/" />
-<meta property="article:published_time" content="2005-11-05T21:38:41+02:00" />
-<meta property="article:modified_time" content="2005-11-05T21:38:41+02:00" />
+<meta property="og:url" content="https://seanmcleod.github.io/2005/11/virtualearth-add-in-for-windows-media-center-with-geocoded-pictures/" />
+<meta property="article:published_time" content="2005-11-10T21:48:08+02:00" />
+<meta property="article:modified_time" content="2005-11-10T21:48:08+02:00" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Virtual Earth Media Center Add In"/>
-<meta name="twitter:description" content="I&rsquo;ve been playing around with a VirtualEarth HTML add-in for Windows Media Center. I&rsquo;ve got a number of features lined up but I&rsquo;ve been side tracked with other work so I&rsquo;ve only got the basics implemented so far.
-Remote control keys:
- Panning - use the arrow keys Zooming - use the channel &#43;- keys Map Style - use the 1,2,3 keys to toggle map styles between road, aerial and hybrid  In addition since the text labels on the map have been sized for viewing on a regular monitor with a 2 foot experience I&rsquo;ve added a local zoom option."/>
+<meta name="twitter:title" content="Virtualearth Add in for Windows Media Center with Geocoded Pictures"/>
+<meta name="twitter:description" content="As I mentioned in my previous post I have a basic Virtual Earth add-in for Windows Media Center that works within the Media Center UI and is usable with the remote control.
+I&rsquo;ve now added support for integrating geocoded pictures with the Virtual Earth add-in. So next time someone asks you where a particular photo was taken while watching a slide show you can pop-up the Virtual Earth add-in which will center the map on the photo&rsquo;s location and show a pushpin on the map."/>
 <meta name="generator" content="Hugo 0.80.0" />
 
 
@@ -30,11 +28,11 @@ Remote control keys:
 {
   "@context": "http://schema.org",
   "@type": "BlogPosting",
-  "headline": "Virtual Earth Media Center Add In",
-  "url": "https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/",
-  "wordCount": "212",
-  "datePublished": "2005-11-05T21:38:41+02:00",
-  "dateModified": "2005-11-05T21:38:41+02:00",
+  "headline": "Virtualearth Add in for Windows Media Center with Geocoded Pictures",
+  "url": "https://seanmcleod.github.io/2005/11/virtualearth-add-in-for-windows-media-center-with-geocoded-pictures/",
+  "wordCount": "145",
+  "datePublished": "2005-11-10T21:48:08+02:00",
+  "dateModified": "2005-11-10T21:48:08+02:00",
   "author": {
     "@type": "Person",
     "name": "Sean McLeod"
@@ -44,9 +42,9 @@ Remote control keys:
 
 
 
-    <link rel="canonical" href="https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/">
+    <link rel="canonical" href="https://seanmcleod.github.io/2005/11/virtualearth-add-in-for-windows-media-center-with-geocoded-pictures/">
 
-    <title>Virtual Earth Media Center Add In | Sean&#39;s Blog</title>
+    <title>Virtualearth Add in for Windows Media Center with Geocoded Pictures | Sean&#39;s Blog</title>
 
     
     <!-- combined, minified CSS -->
@@ -98,9 +96,9 @@ Remote control keys:
 
 <article class="blog-post">
     <header>
-        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/">Virtual Earth Media Center Add In</a></h2>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2005/11/virtualearth-add-in-for-windows-media-center-with-geocoded-pictures/">Virtualearth Add in for Windows Media Center with Geocoded Pictures</a></h2>
         <p class="blog-post-meta">
-            <time datetime="2005-11-05T21:38:41+02:00">Sat Nov 05, 2005</time>
+            <time datetime="2005-11-10T21:48:08+02:00">Thu Nov 10, 2005</time>
             
         </p>
     </header>
@@ -108,31 +106,19 @@ Remote control keys:
     
     
 
-    <p>I&rsquo;ve been playing around with a VirtualEarth HTML add-in for Windows Media Center.
-I&rsquo;ve got a number of features lined up but I&rsquo;ve been side tracked with other work
-so I&rsquo;ve only got the basics implemented so far.</p>
-<p>Remote control keys:</p>
-<ul>
-<li><strong>Panning</strong> - use the arrow keys</li>
-<li><strong>Zooming</strong> - use the channel +- keys</li>
-<li><strong>Map Style</strong> - use the 1,2,3 keys to toggle map styles between road, aerial and hybrid</li>
-</ul>
-<p>In addition since the text labels on the map have been sized for viewing on a regular
-monitor with a 2 foot experience I&rsquo;ve added a local zoom option. Use the 4,5,6 remote
-control keys to change the zoom factor, especially if you&rsquo;re running MCE on a CRT TV.</p>
-<p>To install download this small <a href="http://www.thegreenbutton.com/community/download.aspx?id=1912&amp;MessageID=140046">zip file</a>.</p>
-<p>The zip file contains:</p>
-<ul>
-<li><strong>MapControl.js</strong> - standard VirtualEarth implementation from MSN</li>
-<li><strong>VirtualEarth.html</strong> - MCE HTML add-in page with handlers for the remote control</li>
-<li><strong>VirtualEarthLogo.png</strong> - logo to use in MCE</li>
-<li><strong>VirtualEarth.mcl</strong> - MCE shortcut registration file</li>
-</ul>
-<p>To install unzip to:</p>
-<p><code>%Documents and Settings%\All Users\Start Menu\Programs\Accessories\Media Center\Media Center Programs</code></p>
-<p>Or unzip to a directory of your choice and place a shortcut file in the directory above pointing to the VirtualEarth.mcl file.</p>
-<p>For more details on using the VirtualEarth JavaScript API take a look at the 
-<a href="http://www.viavirtualearth.com/">ViaVirtualEarth website</a>.</p>
+    <p>As I mentioned in my <a href="/2005/11/virtual-earth-media-center-add-in/">previous post</a> I
+have a basic Virtual Earth add-in for Windows Media Center that works within the Media
+Center UI and is usable with the remote control.</p>
+<p>I&rsquo;ve now added support for integrating geocoded pictures with the Virtual Earth add-in.
+So next time someone asks you where a particular photo was taken while watching a
+slide show you can pop-up the Virtual Earth add-in which will center the map on the
+photo&rsquo;s location and show a pushpin on the map. This functionality relies on the
+availability of GPS coordinates in the digital image.</p>
+<p>There are a number of software packages available that will tag your digital photos
+with GPS coordinates using either an associated GPS track or allowing you to manually
+enter the coordinates.</p>
+<p>For more details, screenshots, download and source code see the article I wrote
+up on <a href="https://www.codeproject.com/Articles/12202/Virtual-Earth-Media-Center-Add-in">CodeProject</a>.</p>
 
 
     
@@ -148,9 +134,9 @@ control keys to change the zoom factor, especially if you&rsquo;re running MCE o
           <section>
     <h4>Share</h4>
     <nav class="nav sharing-icons">
-      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2005%2f11%2fvirtual-earth-media-center-add-in%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2005%2f11%2fvirtual-earth-media-center-add-in%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
-      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2005%2f11%2fvirtual-earth-media-center-add-in%2f&amp;text=Virtual%20Earth%20Media%20Center%20Add%20In" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2005%2f11%2fvirtualearth-add-in-for-windows-media-center-with-geocoded-pictures%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2005%2f11%2fvirtualearth-add-in-for-windows-media-center-with-geocoded-pictures%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2005%2f11%2fvirtualearth-add-in-for-windows-media-center-with-geocoded-pictures%2f&amp;text=Virtualearth%20Add%20in%20for%20Windows%20Media%20Center%20with%20Geocoded%20Pictures" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
     </nav>
   </section>
 
