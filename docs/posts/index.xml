@@ -123,5 +123,15 @@ The following data needed to be recorded:
  Angle of Attack (AoA) Angle of Sideslipe (AoS) Attitude (pitch, roll and heading) Indicated airspeed and altitude Stick and rudder position GPS Video  In addition to recording all the data listed above they also wanted to display a subset of the data in the cockpit as an aid for spin recovery.</description>
     </item>
     
+    <item>
+      <title>MapReduce Implementation Using C# Generics</title>
+      <link>https://seanmcleod.github.io/mapreduce-implementation-using-csharp-generics/</link>
+      <pubDate>Wed, 23 Jan 2008 17:57:34 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/mapreduce-implementation-using-csharp-generics/</guid>
+      <description>I came across the Google paper on MapReduce again the other day and decided to try a simple implementation using C# generics allowing you to specify specific types for the keys and values as opposed to being forced to use strings for all keys and values.
+The initial version doesn&amp;rsquo;t include any automatic parallelism across multiple CPUs or clusters of machines.</description>
+    </item>
+    
   </channel>
 </rss>

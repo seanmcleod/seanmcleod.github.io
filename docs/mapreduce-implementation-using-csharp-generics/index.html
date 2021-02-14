@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta property="og:title" content="MapReduce Implementation Using C# Generics" />
+<meta property="og:description" content="I came across the Google paper on MapReduce again the other day and decided to try a simple implementation using C# generics allowing you to specify specific types for the keys and values as opposed to being forced to use strings for all keys and values.
+The initial version doesn&rsquo;t include any automatic parallelism across multiple CPUs or clusters of machines." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://seanmcleod.github.io/mapreduce-implementation-using-csharp-generics/" />
+<meta property="article:published_time" content="2008-01-23T17:57:34+02:00" />
+<meta property="article:modified_time" content="2008-01-23T17:57:34+02:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MapReduce Implementation Using C# Generics"/>
+<meta name="twitter:description" content="I came across the Google paper on MapReduce again the other day and decided to try a simple implementation using C# generics allowing you to specify specific types for the keys and values as opposed to being forced to use strings for all keys and values.
+The initial version doesn&rsquo;t include any automatic parallelism across multiple CPUs or clusters of machines."/>
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MapReduce Implementation Using C# Generics",
+  "url": "https://seanmcleod.github.io/mapreduce-implementation-using-csharp-generics/",
+  "wordCount": "619",
+  "datePublished": "2008-01-23T17:57:34+02:00",
+  "dateModified": "2008-01-23T17:57:34+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Sean McLeod"
+  }
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://seanmcleod.github.io/mapreduce-implementation-using-csharp-generics/">
+
+    <title>MapReduce Implementation Using C# Generics | Sean&#39;s Blog</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://seanmcleod.github.io/css/style.beb8012edc08ba10be012f079d618dc243812267efe62e11f22fe49618f976a4.css" rel="stylesheet" integrity="sha256-vrgBLtwIuhC&#43;AS8HnWGNwkOBImfv5i4R8i/klhj5dqQ=" crossorigin="anonymous">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://seanmcleod.github.io/js/fontawesome.min.ffbfea088a9a1666ec65c3a8cb4906e2a0e4f92dc70dbbf400a125ad2422123a.js" integrity="sha256-/7/qCIqaFmbsZcOoy0kG4qDk&#43;S3HDbv0AKElrSQiEjo=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://seanmcleod.github.io/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://seanmcleod.github.io/" rel="home">Sean's Blog</a></h1>
+        <p class="lead blog-description" dir="auto">A simple Hugo theme based on the Bootstrap v4 blog example.</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/mapreduce-implementation-using-csharp-generics/">MapReduce Implementation Using C# Generics</a></h2>
+        <p class="blog-post-meta">
+            <time datetime="2008-01-23T17:57:34+02:00">Wed Jan 23, 2008</time>
+            
+        </p>
+    </header>
+
+    
+    
+
+    <p>I came across the Google paper on <a href="http://www.usenix.org/events/osdi04/tech/full_papers/dean/dean.pdf">MapReduce</a>
+again the other day and decided to try a simple implementation using C# generics allowing you to specify specific
+types for the keys and values as opposed to being forced to use strings for all keys and values.</p>
+<p>The initial version doesn&rsquo;t include any automatic parallelism across multiple CPUs or clusters
+of machines.</p>
+<p>The core implementation below is only about 50-60 lines of code. I&rsquo;ve also included sample map
+and reduce functions making use of this library and mirroring some of the sample applications mentioned in the Google paper.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> System.Collections.Generic;
+
+<span style="color:#75715e">// Common shortcut where both keys and both values are strings
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> MapReduceAllStrings = MapReduce.MapReduce&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;;
+
+<span style="color:#66d9ef">namespace</span> MapReduce
+{
+
+<span style="color:#75715e">// Map delegate
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> IEnumerable&lt;KeyValuePair&lt;K2,V2&gt;&gt; Map&lt;K,V,K2,V2&gt;(KeyValuePair&lt;K,V&gt; input);
+
+<span style="color:#75715e">// Reduce delegate
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> IEnumerable&lt;V2&gt; Reduce&lt;K2,V2&gt;(KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt; input);
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MapReduce</span>&lt;K, V, K2, V2&gt;
+{
+    <span style="color:#75715e">// Process input data using user supplied map and reduce delegates
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> IEnumerable&lt;KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt;&gt; Process(IEnumerable&lt;KeyValuePair&lt;K,V&gt;&gt; input, Map&lt;K,V,K2,V2&gt; map, Reduce&lt;K2,V2&gt; reduce)
+    {
+        <span style="color:#75715e">// Use dictionary to store intermdiate data - (k2, list(v2))
+</span><span style="color:#75715e"></span>        Dictionary&lt;K2, IEnumerable&lt;V2&gt;&gt; intermediateData = <span style="color:#66d9ef">new</span> Dictionary&lt;K2, IEnumerable&lt;V2&gt;&gt;();
+
+        <span style="color:#75715e">// Perform map over all input
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">foreach</span> (KeyValuePair&lt;K, V&gt; inputItem <span style="color:#66d9ef">in</span> input)
+        {
+            <span style="color:#75715e">// Add map results to intermediate dictionary
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">foreach</span>(KeyValuePair&lt;K2,V2&gt; mapOutput <span style="color:#66d9ef">in</span> map(inputItem))
+            {
+                IEnumerable&lt;V2&gt; enumerableList;
+
+                <span style="color:#75715e">// If k2 already exists in dictionary then just add this v2 to it&#39;s list(v2)
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (intermediateData.TryGetValue(mapOutput.Key, <span style="color:#66d9ef">out</span> enumerableList))
+                {
+                    List&lt;V2&gt; v2List = (List&lt;V2&gt;)enumerableList;
+                    v2List.Add(mapOutput.Value);
+                }
+                <span style="color:#66d9ef">else</span>
+                {
+                    <span style="color:#75715e">// Add new k2 to dictionary and create initial list(v2) with this v2 value
+</span><span style="color:#75715e"></span>                    List&lt;V2&gt; v2List = <span style="color:#66d9ef">new</span> List&lt;V2&gt;();
+                    v2List.Add(mapOutput.Value);
+                    intermediateData.Add(mapOutput.Key, v2List);
+                }
+            }
+        }
+
+        <span style="color:#75715e">// Setup final output data structure
+</span><span style="color:#75715e"></span>        List&lt;KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt;&gt; finalOutput = <span style="color:#66d9ef">new</span> List&lt;KeyValuePair&lt;K2,IEnumerable&lt;V2&gt;&gt;&gt;();
+
+        <span style="color:#75715e">// Perform reduce over all intermediate data
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">foreach</span> (KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt; intermediateVal <span style="color:#66d9ef">in</span> intermediateData)
+        {
+            <span style="color:#75715e">// Setup final output value, i.e. k2 and an empty list(v2) in preparation for reduce operation
+</span><span style="color:#75715e"></span>            KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt; outputVal = <span style="color:#66d9ef">new</span> KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt;(intermediateVal.Key, <span style="color:#66d9ef">new</span> List&lt;V2&gt;());
+            finalOutput.Add(outputVal);
+
+            <span style="color:#75715e">// Perform reduce over all intermediate data
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">foreach</span> (V2 val <span style="color:#66d9ef">in</span> reduce(intermediateVal))
+            {
+                <span style="color:#75715e">// Add resultant values from reduce to final output list(v2)
+</span><span style="color:#75715e"></span>                ((List&lt;V2&gt;)(outputVal.Value)).Add(val);
+            }
+        }
+
+        <span style="color:#66d9ef">return</span> finalOutput;
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IEnumerable&lt;V2&gt; IdentityReduce(KeyValuePair&lt;K2, IEnumerable&lt;V2&gt;&gt; input)
+    {
+        List&lt;V2&gt; output = <span style="color:#66d9ef">new</span> List&lt;V2&gt;();
+
+        <span style="color:#66d9ef">foreach</span> (V2 val <span style="color:#66d9ef">in</span> input.Value)
+        {
+            output.Add(val);
+        }
+
+        <span style="color:#66d9ef">return</span> output;
+    }
+}
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MapReduceTest</span>
+{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args)
+    {
+        WordCountTest();
+
+        ReverseWebLinkGraph();
+    }
+
+    <span style="color:#75715e">/////////////////// - WordCount test
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> WordCountTest()
+    {
+        List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt; input = <span style="color:#66d9ef">new</span> List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt;
+            {
+                <span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;the quick brown fox jumps over the log&#34;</span>),
+                <span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;while the mokey jumps on the fox&#34;</span>),
+                <span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;c&#34;</span>, <span style="color:#e6db74">&#34;and the cow jumps over the moon&#34;</span>)
+            };
+
+        MapReduce&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">int</span>&gt; WordCount = <span style="color:#66d9ef">new</span> MapReduce&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">int</span>&gt;();
+
+        <span style="color:#66d9ef">foreach</span>(KeyValuePair&lt;<span style="color:#66d9ef">string</span>,IEnumerable&lt;<span style="color:#66d9ef">int</span>&gt;&gt; val <span style="color:#66d9ef">in</span> WordCount.Process(input, WordCountMap, WordCountReduce))
+        {
+            PrintResult&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">int</span>&gt;(val);
+        }
+    }
+
+    <span style="color:#66d9ef">static</span> IEnumerable&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">int</span>&gt;&gt; WordCountMap(KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt; input)
+    {
+        List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">int</span>&gt;&gt; output = <span style="color:#66d9ef">new</span> List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">int</span>&gt;&gt;();
+
+        <span style="color:#66d9ef">string</span>[] words = input.Value.Split(<span style="color:#e6db74">&#39; &#39;</span>);
+
+        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">string</span> word <span style="color:#66d9ef">in</span> words)
+        {
+            output.Add(<span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">int</span>&gt;(word, <span style="color:#ae81ff">1</span>));
+        }
+
+        <span style="color:#66d9ef">return</span> output;
+    }
+
+    <span style="color:#66d9ef">static</span> IEnumerable&lt;<span style="color:#66d9ef">int</span>&gt; WordCountReduce(KeyValuePair&lt;<span style="color:#66d9ef">string</span>, IEnumerable&lt;<span style="color:#66d9ef">int</span>&gt;&gt; input)
+    {
+        List&lt;<span style="color:#66d9ef">int</span>&gt; output = <span style="color:#66d9ef">new</span> List&lt;<span style="color:#66d9ef">int</span>&gt;();
+
+        <span style="color:#66d9ef">int</span> total = <span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">int</span> wc <span style="color:#66d9ef">in</span> input.Value)
+        {
+            total += wc;
+        }
+
+        output.Add(total);
+
+        <span style="color:#66d9ef">return</span> output;
+    }
+
+    <span style="color:#75715e">/////////////////// - Reverse web link graph test
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> ReverseWebLinkGraph()
+    {
+        List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt; input = <span style="color:#66d9ef">new</span> List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt;
+            {
+                <span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;abc.com&#34;</span>, <span style="color:#e6db74">&#34;cnn.com ibm.com dti.com&#34;</span>),
+                <span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;cnn.com&#34;</span>, <span style="color:#e6db74">&#34;ms.com slashdot.org abc.com iol.com dti.com&#34;</span>),
+                <span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>,<span style="color:#66d9ef">string</span>&gt;(<span style="color:#e6db74">&#34;dti.com&#34;</span>, <span style="color:#e6db74">&#34;ibm.com avd.com abc.com&#34;</span>)
+            };
+
+        MapReduceAllStrings ReverseWebLinks = <span style="color:#66d9ef">new</span> MapReduceAllStrings();
+
+        <span style="color:#66d9ef">foreach</span> (KeyValuePair&lt;<span style="color:#66d9ef">string</span>, IEnumerable&lt;<span style="color:#66d9ef">string</span>&gt;&gt; val <span style="color:#66d9ef">in</span> ReverseWebLinks.Process(input, ReverseWebLinksMap, MapReduceAllStrings.IdentityReduce))
+        {
+            PrintResult&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;(val);
+        }
+    }
+
+    <span style="color:#66d9ef">static</span> IEnumerable&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt; ReverseWebLinksMap(KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt; input)
+    {
+        List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt; output = <span style="color:#66d9ef">new</span> List&lt;KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;&gt;();
+
+        <span style="color:#66d9ef">string</span>[] targets = input.Value.Split(<span style="color:#e6db74">&#39; &#39;</span>);
+
+        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">string</span> target <span style="color:#66d9ef">in</span> targets)
+        {
+            output.Add(<span style="color:#66d9ef">new</span> KeyValuePair&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;(target, input.Key));
+        }
+
+        <span style="color:#66d9ef">return</span> output;
+    }
+
+    <span style="color:#75715e">/////////////////// - Helper
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> PrintResult&lt;K,V&gt;(KeyValuePair&lt;K, IEnumerable&lt;V&gt;&gt; result)
+    {
+        Console.Write(result.Key.ToString());
+        Console.Write(<span style="color:#e6db74">&#34; - &#34;</span>);
+        <span style="color:#66d9ef">foreach</span>(V val <span style="color:#66d9ef">in</span> result.Value)
+        {
+            Console.Write(val.ToString());
+            Console.Write(<span style="color:#e6db74">&#34; &#34;</span>);
+        }
+        Console.WriteLine(<span style="color:#e6db74">&#34;&#34;</span>);
+    }
+
+}
+
+}
+</code></pre></div>
+
+    
+
+    
+    
+
+    
+    <hr>
+    <footer>
+
+        
+          <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2fmapreduce-implementation-using-csharp-generics%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2fmapreduce-implementation-using-csharp-generics%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2fmapreduce-implementation-using-csharp-generics%2f&amp;text=MapReduce%20Implementation%20Using%20C%23%20Generics" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+        
+
+        
+    </footer>
+    
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p dir="auto">Semi-random posts on technology and aviation.</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+
+
+<li style="margin-bottom:8px;" ><a href="/2018/06/camera-tracking-of-aircraft-control-positions/">Camera Tracking of Aircraft Control Positions</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/05/extra-300-spin/">Extra 300 Spin</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/homebrew-fti/">Homebrew FTI</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/pitch-rate-damping-jsbsim-test/">Pitch Rate Damping - JSBSim Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/01/max-q-maximum-dynamic-pressure/">Max Q - Maximum Dynamic Pressure</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2017/11/modelica-simple-rocket-test/">Modelica - Simple Rocket Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2014/04/mh-370-forward-tracking/">MH-370 Forward Tracking</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2014/04/mh-370-back-tracking/">MH-370 Back Tracking</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/10/live-photo-gallery-people-tags/">Live Photo Gallery People Tags</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/10/bitmap-snapshots-of-wpf-visuals/">Bitmap Snapshots of WPF Visuals</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/06/geeks-and-fast-jets/">Geeks and Fast Jets</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/mapreduce-implementation-using-csharp-generics/">MapReduce Implementation Using C# Generics</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
