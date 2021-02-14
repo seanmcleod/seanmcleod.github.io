@@ -83,6 +83,16 @@ The dynamic pressure or Q is the product of the air-density and the velocity squ
     </item>
     
     <item>
+      <title>MH-370 Back Tracking</title>
+      <link>https://seanmcleod.github.io/2014/04/mh-370-back-tracking/</link>
+      <pubDate>Tue, 15 Apr 2014 15:58:37 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2014/04/mh-370-back-tracking/</guid>
+      <description>For each ping between the aircraft and the Inmarsat satellite we have the range/elevation angle between the satellite at that time (satellite is moving) and the aircraft and we have the Burst Frequency Offset (BFO) Doppler data.
+So the LOS speed between the satellite and the aircraft along the LOS vector is as follows:</description>
+    </item>
+    
+    <item>
       <title>Geeks and Fast Jets</title>
       <link>https://seanmcleod.github.io/2008/06/geeks-and-fast-jets/</link>
       <pubDate>Sun, 08 Jun 2008 15:50:59 +0200</pubDate>
