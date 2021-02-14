@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta property="og:title" content="Modelica - Simple Rocket Test" />
+<meta property="og:description" content="In the mid 1980s while I was in high school my father bought me an Apple II, well actually a clone of an Apple II from Hong Kong. He had been a helicopter pilot in the air force and had then become an airline pilot, hence the Hong Kong connection." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://seanmcleod.github.io/2017/11/modelica-simple-rocket-test/" />
+<meta property="article:published_time" content="2017-11-14T11:00:56+02:00" />
+<meta property="article:modified_time" content="2017-11-14T11:00:56+02:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Modelica - Simple Rocket Test"/>
+<meta name="twitter:description" content="In the mid 1980s while I was in high school my father bought me an Apple II, well actually a clone of an Apple II from Hong Kong. He had been a helicopter pilot in the air force and had then become an airline pilot, hence the Hong Kong connection."/>
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Modelica - Simple Rocket Test",
+  "url": "https://seanmcleod.github.io/2017/11/modelica-simple-rocket-test/",
+  "wordCount": "610",
+  "datePublished": "2017-11-14T11:00:56+02:00",
+  "dateModified": "2017-11-14T11:00:56+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Sean McLeod"
+  }
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://seanmcleod.github.io/2017/11/modelica-simple-rocket-test/">
+
+    <title>Modelica - Simple Rocket Test | Sean&#39;s Blog</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://seanmcleod.github.io/css/style.beb8012edc08ba10be012f079d618dc243812267efe62e11f22fe49618f976a4.css" rel="stylesheet" integrity="sha256-vrgBLtwIuhC&#43;AS8HnWGNwkOBImfv5i4R8i/klhj5dqQ=" crossorigin="anonymous">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://seanmcleod.github.io/js/fontawesome.min.ffbfea088a9a1666ec65c3a8cb4906e2a0e4f92dc70dbbf400a125ad2422123a.js" integrity="sha256-/7/qCIqaFmbsZcOoy0kG4qDk&#43;S3HDbv0AKElrSQiEjo=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://seanmcleod.github.io/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://seanmcleod.github.io/" rel="home">Sean's Blog</a></h1>
+        <p class="lead blog-description" dir="auto">A simple Hugo theme based on the Bootstrap v4 blog example.</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2017/11/modelica-simple-rocket-test/">Modelica - Simple Rocket Test</a></h2>
+        <p class="blog-post-meta">
+            <time datetime="2017-11-14T11:00:56+02:00">Tue Nov 14, 2017</time>
+            
+        </p>
+    </header>
+
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    
+
+    <p>In the mid 1980s while I was in high school my father bought me an Apple II, well actually a clone
+of an Apple II from Hong Kong. He had been a helicopter pilot in the air force and had then become
+an airline pilot, hence the Hong Kong connection.</p>
+<p>I had always had an interest in aircraft and so one of the first programs I wrote for the Apple II
+was a very basic aircraft simulator based on formulas in <a href="https://www.amazon.com/Mechanics-Flight-11th-R-H-Barnard/dp/1405823593/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1509652774&amp;sr=1-1&amp;dpID=41fgAU7RU9L&amp;preST=_SY291_BO1,204,203,200_QL40_&amp;dpSrc=srch">Mechanics of Flight</a>
+and some basic high school trigonometry.</p>
+<p>Recently I came across a talk given by Michael Tiller titled - <a href="https://www.youtube.com/watch?v=-mvEUuc-sWE">Modelica: Component-Oriented Modeling of Physical Systems</a>
+which describes the Modelica language and tools which allow you to describe a physical system by
+listing the equations involved. As long as the number of variables involved equals the number of
+equations then Modelica can simulate the model. He also has a free online book describing Modelica -
+<a href="https://mbe.modelica.university/">Modelica by Example</a>.</p>
+<p>So I downloaded the free open source version of Modelica - <a href="https://www.openmodelica.org/">OpenModelica</a>
+to test it out. For an initial basic test I decided to model a simple rocket launch. Three forces
+are modeled, namely the thrust from the rocket engine which is constant while it has fuel, aerodynamic
+drag both on the way up and on the way down and the gravitational force on the rocket which varies since
+the fuel mass decreases as it&rsquo;s burnt by the engine.</p>
+<p>In terms of the aerodynamic drag the assumption is made that as the rocket reaches it&rsquo;s maximum trajectory
+it flips over 180 degrees to come down nose first so that the coefficient of drag used is the same for the
+ascent and the descent. I also assume that the rocket won&rsquo;t be flying very high so we can assume a constant
+air density.</p>
+
+<span class="jsonly">
+     
+        $$Drag = C_D \frac{1}{2} \rho V^2 S$$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?Drag%20%3d%20C_D%20%5cfrac%7b1%7d%7b2%7d%20%5crho%20V%5e2%20S" title="Drag = C_D \frac{1}{2} \rho V^2 S" />
+        </div>
+    
+</noscript>
+
+<p>Forces acting on the rocket.</p>
+<p><img src="/images/modelica-simple-rocket-test/simplerocketforces.png" alt="image alt text"></p>
+<p>Here is the Modelica code to model the rocket system, the heart of which are the seven equations describing the
+forces and calculating the rocket&rsquo;s mass based on the fuel consumption.</p>
+<p><img src="/images/modelica-simple-rocket-test/modelicarocketmodel.png" alt="image alt text"></p>
+<p>Here is a graph showing most of the variables (forces, velocity and height) over the course of the simulation run.
+Click on the graph for a full size version.</p>
+<p><a href="/images/modelica-simple-rocket-test/simplerocketgraph1.png"><img src="/images/modelica-simple-rocket-test/simplerocketgraph1.png" alt="image alt text"></a></p>
+<p>Here is an annotated version of the graph with some sanity checks. Click on the graph for a full size version.</p>
+<p><a href="/images/modelica-simple-rocket-test/simplerocketgraph-annotated.png"><img src="/images/modelica-simple-rocket-test/simplerocketgraph-annotated.png" alt="image alt text"></a></p>
+<ol>
+<li>
+<p><strong>Engine cut-off</strong>. The model starts with 100kg of fuel and a fuel burn rate of 10kg/s so we expect 
+engine cut-off at exactly 10 seconds. At 10s we see the net force flips from being positive, i.e. the 
+engine force is greater than the gravitational force and drag force to being negative since the engine 
+has cut out. Leaving only drag and gravity acting on the rocket.</p>
+</li>
+<li>
+<p><strong>Gravitational force</strong>. Note how the gravitational force decreases from time 0s when the rocket is 
+full of fuel to time 10s when the fuel is all used up.</p>
+</li>
+<li>
+<p><strong>Maximum net force</strong>. Is a trade-off between the rocket motor force which is constant and the gravitational 
+force which decreases as fuel is burnt versus the increasing drag force which increases with the square of the
+velocity. After this point the drag force starts to dominate.</p>
+</li>
+<li>
+<p><strong>Maximum velocity</strong>. Reached as the rocket motor shuts off. Also maximum drag force at the same time.</p>
+</li>
+<li>
+<p><strong>Apogee</strong>. Reached as the velocity goes to 0, drag also goes to 0 at this instant and the net force is gravity only.</p>
+</li>
+</ol>
+<p>By simply changing some of the parameters of the model, e.g. the fuel burn rate or the initial amount of fuel etc.
+you can quickly see what effect that has by re-running the simulation.</p>
+
+
+    
+
+    
+    
+    <script>renderMathInElement(document.body);</script>
+    
+
+    
+    <hr>
+    <footer>
+
+        
+          <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2017%2f11%2fmodelica-simple-rocket-test%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2017%2f11%2fmodelica-simple-rocket-test%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2017%2f11%2fmodelica-simple-rocket-test%2f&amp;text=Modelica%20-%20Simple%20Rocket%20Test" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+        
+
+        
+    </footer>
+    
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p dir="auto">Semi-random posts on technology and aviation.</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+
+
+<li style="margin-bottom:8px;" ><a href="/2018/06/camera-tracking-of-aircraft-control-positions/">Camera Tracking of Aircraft Control Positions</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/05/extra-300-spin/">Extra 300 Spin</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/homebrew-fti/">Homebrew FTI</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/pitch-rate-damping-jsbsim-test/">Pitch Rate Damping - JSBSim Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/01/max-q-maximum-dynamic-pressure/">Max Q - Maximum Dynamic Pressure</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2017/11/modelica-simple-rocket-test/">Modelica - Simple Rocket Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/06/geeks-and-fast-jets/">Geeks and Fast Jets</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
