@@ -36,6 +36,16 @@ The control positions were tracked using a camera based tracking system that I d
     </item>
     
     <item>
+      <title>Landing - Ground Effect, Flare - JSBSim</title>
+      <link>https://seanmcleod.github.io/2018/02/landing-ground-effect-flare-jsbsim/</link>
+      <pubDate>Tue, 06 Feb 2018 00:36:03 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/02/landing-ground-effect-flare-jsbsim/</guid>
+      <description>Taking a look at the ground effect and the flare on landing performance using JSBSim to see it&amp;rsquo;s effect on the final sink rate and the change in airspeed.
+For this test I&amp;rsquo;m using the Boeing 737 model included with JSBSim. The aircraft is setup and trimmed at 150ft AGL with a speed of 140kt IAS and on a 3 degree flight path with the flaps and gear down.</description>
+    </item>
+    
+    <item>
       <title>Max Q - Maximum Dynamic Pressure</title>
       <link>https://seanmcleod.github.io/2018/01/max-q-maximum-dynamic-pressure/</link>
       <pubDate>Wed, 10 Jan 2018 19:47:36 +0200</pubDate>

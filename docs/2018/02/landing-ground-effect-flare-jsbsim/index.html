@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta property="og:title" content="Landing - Ground Effect, Flare - JSBSim" />
+<meta property="og:description" content="Taking a look at the ground effect and the flare on landing performance using JSBSim to see it&rsquo;s effect on the final sink rate and the change in airspeed.
+For this test I&rsquo;m using the Boeing 737 model included with JSBSim. The aircraft is setup and trimmed at 150ft AGL with a speed of 140kt IAS and on a 3 degree flight path with the flaps and gear down." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://seanmcleod.github.io/2018/02/landing-ground-effect-flare-jsbsim/" />
+<meta property="article:published_time" content="2018-02-06T00:36:03+02:00" />
+<meta property="article:modified_time" content="2018-02-06T00:36:03+02:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Landing - Ground Effect, Flare - JSBSim"/>
+<meta name="twitter:description" content="Taking a look at the ground effect and the flare on landing performance using JSBSim to see it&rsquo;s effect on the final sink rate and the change in airspeed.
+For this test I&rsquo;m using the Boeing 737 model included with JSBSim. The aircraft is setup and trimmed at 150ft AGL with a speed of 140kt IAS and on a 3 degree flight path with the flaps and gear down."/>
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Landing - Ground Effect, Flare - JSBSim",
+  "url": "https://seanmcleod.github.io/2018/02/landing-ground-effect-flare-jsbsim/",
+  "wordCount": "1167",
+  "datePublished": "2018-02-06T00:36:03+02:00",
+  "dateModified": "2018-02-06T00:36:03+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Sean McLeod"
+  }
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://seanmcleod.github.io/2018/02/landing-ground-effect-flare-jsbsim/">
+
+    <title>Landing - Ground Effect, Flare - JSBSim | Sean&#39;s Blog</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://seanmcleod.github.io/css/style.beb8012edc08ba10be012f079d618dc243812267efe62e11f22fe49618f976a4.css" rel="stylesheet" integrity="sha256-vrgBLtwIuhC&#43;AS8HnWGNwkOBImfv5i4R8i/klhj5dqQ=" crossorigin="anonymous">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://seanmcleod.github.io/js/fontawesome.min.ffbfea088a9a1666ec65c3a8cb4906e2a0e4f92dc70dbbf400a125ad2422123a.js" integrity="sha256-/7/qCIqaFmbsZcOoy0kG4qDk&#43;S3HDbv0AKElrSQiEjo=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://seanmcleod.github.io/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://seanmcleod.github.io/" rel="home">Sean's Blog</a></h1>
+        <p class="lead blog-description" dir="auto">A simple Hugo theme based on the Bootstrap v4 blog example.</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-02-06T00:36:03+02:00">Tue Feb 06, 2018</time>
+            
+        </p>
+    </header>
+
+    
+    
+
+    <p>Taking a look at the ground effect and the flare on landing performance using JSBSim to
+see it&rsquo;s effect on the final sink rate and the change in airspeed.</p>
+<p>For this test I&rsquo;m using the Boeing 737 model included with JSBSim. The aircraft is setup
+and trimmed at 150ft AGL with a speed of 140kt IAS and on a 3 degree flight path with
+the flaps and gear down.</p>
+<p>This is the Cl versus AoA for the B-737 model.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737clvsalpha.png" alt="image alt text"></p>
+<p>The coefficient of induced drag versus AoA. It increases as the square of the AoA.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737cdivsalpha.png" alt="image alt text"></p>
+<p>The ground effect kicks in when the aircraft is roughly within 1 wingspan above the ground.
+For the B-737 this means the ground effect starts at just under 100ft AGL since it has a
+wingspan of 93ft.</p>
+<p>There are two main changes in aircraft performance when in ground effect, namely the
+coefficient of lift (Cl) increases for a given angle of attack and the induced drag coefficient
+decreases for a given angle of attack. Both effects increase the closer the aircraft gets to
+the ground, expressed as the ratio b/h (wingspan / AGL).</p>
+<p>The following graph shows the increase in Cl versus b/h as a factor increase over the normal
+Cl versus AoA used for this B-737 model.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737clfactorvshb.png" alt="image alt text"></p>
+<p>So at an AGL of 50ft there is a roughly 2% increase in the coefficient of lift which rises to
+roughly 6% at 25ft AGL.</p>
+<p>The following graph shows the decrease in the induced drag coefficient Cdi versus b/h.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737cdifactorvshb.png" alt="image alt text"></p>
+<p>At an AGL of 50ft there is roughly a 7% decrease in induced drag and when we get down to 25ft AGL
+there is roughly a 24% decrease.</p>
+<p>So left unchecked during the landing the ground effect will result in a slight &lsquo;float&rsquo; down the
+runway in terms of the extra lift being generated and with lower induced drag and the increased lift
+will lower the sink rate.</p>
+<p>Three landing tests were performed, all with the same starting conditions, i.e. trimmed at 140kt IAS
+at 150ft AGL with a flight path angle of 3 degrees resulting in a descent rate of 12.5ft/s or 750fpm.</p>
+<p>In the 1st landing test the ground effects were removed from the aircraft model and no control inputs
+to the elevator or throttles were made, i.e. the aircraft continued descending at 140kts and at 750fpm
+until it hit the runway very hard.</p>
+<p>In the 2nd landing test the ground effects were enabled but again no control inputs were made. In other
+words no pilot inputs after the control positions were set during the initial trim, but the aircraft was
+influenced by the ground effect as it descended below 100ft AGL.</p>
+<p>In the 3rd landing test the ground effect model was enabled and the throttles were retarded at 50ft AGL
+and then the aircraft was rotated slowly in pitch in order to flare the aircraft.</p>
+<blockquote>
+<p>First the background: Airbus gives 3 landing distance tables, &ldquo;manual/manual&rdquo;, &ldquo;manual/autobrake&rdquo; (FCOM 2.03) 
+and &ldquo;autoland/autobrake&rdquo;.</p>
+</blockquote>
+<blockquote>
+<p>&ldquo;Manual/manual&rdquo; is the minimum landing distance based on certification flight tests. You arrive over the &ldquo;screen&rdquo; 
+(50ft) with Vref (Vls), retard the thrust and rotate the aircraft along a constant flight path resulting in a 
+touchdown speed of Vls minus 7-8 kts and a relatively high pitch attitude. Derotation is positive and max brakes 
+are applied without reverse.</p>
+</blockquote>
+<p>The following graph shows the flight path for the 3 landings.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737landingprofiles.png" alt="image alt text"></p>
+<p>And a zoomed in view from 50ft AGL onwards.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737landingprofileszoomed.png" alt="image alt text"></p>
+<p>The landing with no ground effect and no pilot inputs followed the 3 degree flight path onto the runway, landing 
+850m on from the 150ft AGL start. The landing with the ground effect enabled but with no pilot inputs ballooned above 
+the initial 3 degree flight path and landed 992m from the start. The 3rd landing with pilot inputs to retard the
+engines to idle thrust and to initiate a flare landed 988m from the start.</p>
+<p>The following graph shows the throttle and elevator inputs that were applied plus the resulting pitch rate.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737controlinputs.png" alt="image alt text"></p>
+<p>You can see a nose pitch down rate as the engines are retarded to idle thrust just before the elevator input is applied.</p>
+<p>As expected for the no ground effect and no pilot input landing the pitch, alpha (AoA) and gamma (flight path angle)
+all remain constant from their initial trim angles all the way onto the ground.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737alphapitchgammnoge.png" alt="image alt text"></p>
+<p>For the ground effect landing with no pilot inputs the pitch attitude remains pretty constant around 2.4 degrees
+nose up, but as the ground effect comes into play the AoA and flight path angle decrease together as a result
+of the increased lift.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737alphapitchgammgenoinputs.png" alt="image alt text"></p>
+<p>And lastly for the landing with pilot inputs. The flare maneuver is obvious with the increasing alpha from 
+the trim value around 5.2 degrees to a peak of around 6.2 degrees which then decays back down to roughly 
+5 degrees on touch down. The pitch attitude increases from 2.25 degrees to 4.75 degrees and then is held at 
+this angle for approximately 1.5 seconds until touch down.</p>
+<p>The flare also decreases the flight path angle from the initial 3 degrees to about 0.3 degrees on landing.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737alphapitchgammgewithinputs.png" alt="image alt text"></p>
+<p>In terms of the airspeed in the no ground effect with no pilot input case the IAS remained pretty constant 
+around the initial trim value of 139.5kt. In the case of the landing with ground effect and no pilot inputs 
+the IAS increased by roughly 1kt in the last 4.5 seconds.</p>
+<p>The combination of retarding the thrust to idle and increasing alpha during the flare means we bled off 
+approximately 7.5kts from the initial approach speed.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737ias.png" alt="image alt text"></p>
+<p>And lastly in terms of the descent rate during the approach and the final sink rate as the aircraft lands. 
+In the landing with ground effect and no pilot inputs the ground effect decreases the final sink rate from 
+750fpm down to 175fpm.</p>
+<p>In the landing with pilot inputs to decrease the thrust and to flare the aircraft the final sink rate is 
+reduced to only 75fpm, quite a greaser!</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/b737descentrate.png" alt="image alt text"></p>
+<p>One effect that hasn&rsquo;t been modeled is the change in pitch moment due to ground effect. When coming into 
+ground effect the downwash angle from the wing over the tailplane is reduced which in turn reduces the 
+amount of lift from the tailplane resulting in a nose down pitching moment.</p>
+<p>Here is an example of some wind tunnel data and flight test data for the Comet airliner with a wingspan 
+of 107ft and the change in pitching moment when in ground effect.</p>
+<p><img src="/images/landing-ground-effect-flare-jsbsim/groundeffectpitchingmoment.png" alt="image alt text"></p>
+<p>If this change in pitching moment had been modelled then for the test flight with ground effect but no 
+pilot input we would&rsquo;ve seen the pitch attitude decreasing as the aircraft came into ground effect 
+instead of the constant pitch attitude. This would also have changed the AoA experienced etc. For the 
+test flight with pilot input we would need to apply a greater elevator deflection during the flare to 
+counteract the nose down pitching moment if we wanted to achieve the same pitch attitude and AoA.</p>
+
+
+    
+
+    
+    
+
+    
+    <hr>
+    <footer>
+
+        
+          <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2018%2f02%2flanding-ground-effect-flare-jsbsim%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2018%2f02%2flanding-ground-effect-flare-jsbsim%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2018%2f02%2flanding-ground-effect-flare-jsbsim%2f&amp;text=Landing%20-%20Ground%20Effect%2c%20Flare%20-%20JSBSim" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+        
+
+        
+    </footer>
+    
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p dir="auto">Semi-random posts on technology and aviation.</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+
+
+<li style="margin-bottom:8px;" ><a href="/2018/06/camera-tracking-of-aircraft-control-positions/">Camera Tracking of Aircraft Control Positions</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/05/extra-300-spin/">Extra 300 Spin</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/homebrew-fti/">Homebrew FTI</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/01/max-q-maximum-dynamic-pressure/">Max Q - Maximum Dynamic Pressure</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/06/geeks-and-fast-jets/">Geeks and Fast Jets</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
