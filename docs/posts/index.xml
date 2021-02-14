@@ -146,12 +146,23 @@ I set the auto-bracketing option on the camera to shoot a normal exposure, a -2 
     
     <item>
       <title>Windows Desktop Search Powershell Cmdlet</title>
-      <link>https://seanmcleod.github.io/1/01/windows-desktop-search-powershell-cmdlet/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>https://seanmcleod.github.io/2006/07/windows-desktop-search-powershell-cmdlet/</link>
+      <pubDate>Mon, 31 Jul 2006 21:23:24 +0200</pubDate>
       
-      <guid>https://seanmcleod.github.io/1/01/windows-desktop-search-powershell-cmdlet/</guid>
+      <guid>https://seanmcleod.github.io/2006/07/windows-desktop-search-powershell-cmdlet/</guid>
       <description>Microsoft are introducing a new command line shell named PowerShell, previously known as Monad. The main difference between PowerShell and other shells like cmd, bash, ksh etc. is the pipelining and processing of objects as opposed to plain text.
 I had previously used the Windows Desktop Search API to write a music browser and thought it would be useful to create a Windows Desktop Search Powershell cmdlet to allow users to query their search index from the command line.</description>
+    </item>
+    
+    <item>
+      <title>Virtual Earth Media Center Add In</title>
+      <link>https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/</link>
+      <pubDate>Sat, 05 Nov 2005 21:38:41 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2005/11/virtual-earth-media-center-add-in/</guid>
+      <description>I&amp;rsquo;ve been playing around with a VirtualEarth HTML add-in for Windows Media Center. I&amp;rsquo;ve got a number of features lined up but I&amp;rsquo;ve been side tracked with other work so I&amp;rsquo;ve only got the basics implemented so far.
+Remote control keys:
+ Panning - use the arrow keys Zooming - use the channel +- keys Map Style - use the 1,2,3 keys to toggle map styles between road, aerial and hybrid  In addition since the text labels on the map have been sized for viewing on a regular monitor with a 2 foot experience I&amp;rsquo;ve added a local zoom option.</description>
     </item>
     
   </channel>

@@ -1,6 +1,6 @@
 ---
 title: "Windows Desktop Search Powershell Cmdlet"
-date: 2006--07-31T21:23:24+02:00
+date: 2006-07-31T21:23:24+02:00
 ---
 
 Microsoft are introducing a new command line shell named PowerShell, previously known as Monad. 
