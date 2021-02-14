@@ -46,6 +46,15 @@ For this test I&amp;rsquo;m using the Boeing 737 model included with JSBSim. The
     </item>
     
     <item>
+      <title>Pitch Rate Damping - JSBSim Test</title>
+      <link>https://seanmcleod.github.io/2018/02/pitch-rate-damping-jsbsim-test/</link>
+      <pubDate>Fri, 02 Feb 2018 10:25:49 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/02/pitch-rate-damping-jsbsim-test/</guid>
+      <description>When an aircraft pitches up or down the tailplane rotates around the cg of the aircraft and this motion causes a change in the tailplane&amp;rsquo;s angle of attack, which generates a change in lift at the tailplane. This change in lift at the tailplane in conjunction with the tailplane&amp;rsquo;s arm from the cg generates an opposing, or damping, pitching moment.</description>
+    </item>
+    
+    <item>
       <title>Max Q - Maximum Dynamic Pressure</title>
       <link>https://seanmcleod.github.io/2018/01/max-q-maximum-dynamic-pressure/</link>
       <pubDate>Wed, 10 Jan 2018 19:47:36 +0200</pubDate>

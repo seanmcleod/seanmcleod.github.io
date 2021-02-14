@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<meta property="og:title" content="Pitch Rate Damping - JSBSim Test" />
+<meta property="og:description" content="When an aircraft pitches up or down the tailplane rotates around the cg of the aircraft and this motion causes a change in the tailplane&rsquo;s angle of attack, which generates a change in lift at the tailplane. This change in lift at the tailplane in conjunction with the tailplane&rsquo;s arm from the cg generates an opposing, or damping, pitching moment." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://seanmcleod.github.io/2018/02/pitch-rate-damping-jsbsim-test/" />
+<meta property="article:published_time" content="2018-02-02T10:25:49+02:00" />
+<meta property="article:modified_time" content="2018-02-02T10:25:49+02:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pitch Rate Damping - JSBSim Test"/>
+<meta name="twitter:description" content="When an aircraft pitches up or down the tailplane rotates around the cg of the aircraft and this motion causes a change in the tailplane&rsquo;s angle of attack, which generates a change in lift at the tailplane. This change in lift at the tailplane in conjunction with the tailplane&rsquo;s arm from the cg generates an opposing, or damping, pitching moment."/>
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pitch Rate Damping - JSBSim Test",
+  "url": "https://seanmcleod.github.io/2018/02/pitch-rate-damping-jsbsim-test/",
+  "wordCount": "512",
+  "datePublished": "2018-02-02T10:25:49+02:00",
+  "dateModified": "2018-02-02T10:25:49+02:00",
+  "author": {
+    "@type": "Person",
+    "name": "Sean McLeod"
+  }
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://seanmcleod.github.io/2018/02/pitch-rate-damping-jsbsim-test/">
+
+    <title>Pitch Rate Damping - JSBSim Test | Sean&#39;s Blog</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://seanmcleod.github.io/css/style.beb8012edc08ba10be012f079d618dc243812267efe62e11f22fe49618f976a4.css" rel="stylesheet" integrity="sha256-vrgBLtwIuhC&#43;AS8HnWGNwkOBImfv5i4R8i/klhj5dqQ=" crossorigin="anonymous">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://seanmcleod.github.io/js/fontawesome.min.ffbfea088a9a1666ec65c3a8cb4906e2a0e4f92dc70dbbf400a125ad2422123a.js" integrity="sha256-/7/qCIqaFmbsZcOoy0kG4qDk&#43;S3HDbv0AKElrSQiEjo=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://seanmcleod.github.io/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://seanmcleod.github.io/" rel="home">Sean's Blog</a></h1>
+        <p class="lead blog-description" dir="auto">A simple Hugo theme based on the Bootstrap v4 blog example.</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+    <header>
+        <h2 class="blog-post-title" dir="auto"><a href="https://seanmcleod.github.io/2018/02/pitch-rate-damping-jsbsim-test/">Pitch Rate Damping - JSBSim Test</a></h2>
+        <p class="blog-post-meta">
+            <time datetime="2018-02-02T10:25:49+02:00">Fri Feb 02, 2018</time>
+            
+        </p>
+    </header>
+
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+    
+
+    <p>When an aircraft pitches up or down the tailplane rotates around the cg of the aircraft and this
+motion causes a change in the tailplane&rsquo;s angle of attack, which generates a change in lift at
+the tailplane. This change in lift at the tailplane in conjunction with the tailplane&rsquo;s arm from
+the cg generates an opposing, or damping, pitching moment.</p>
+<p><img src="/images/pitch-rate-damping-jsbsim-test/pitchdamping1.png" alt="image alt text"></p>
+<p>The pitch rate damping moment is proportional to the length of the tail arm and the change in lift.
+The change in lift is proportional to the change in the angle of attack which is proportional to the
+pitch rate and inversely proportional to the true airspeed.</p>
+<p>The moment due to pitch rate is:</p>
+
+<span class="jsonly">
+     
+        $$M_q = \frac{1}{2} \rho V^2 S \bar{c} C_{m_q} \frac{q \bar{c}}{2V} $$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?M_q%20%3d%20%5cfrac%7b1%7d%7b2%7d%20%5crho%20V%5e2%20S%20%5cbar%7bc%7d%20C_%7bm_q%7d%20%5cfrac%7bq%20%5cbar%7bc%7d%7d%7b2V%7d%20" title="M_q = \frac{1}{2} \rho V^2 S \bar{c} C_{m_q} \frac{q \bar{c}}{2V} " />
+        </div>
+    
+</noscript>
+
+
+<span class="jsonly">
+     
+        $$M_q = C_{m_q} \frac{\rho V S \bar{c}^2}{4} q$$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?M_q%20%3d%20C_%7bm_q%7d%20%5cfrac%7b%5crho%20V%20S%20%5cbar%7bc%7d%5e2%7d%7b4%7d%20q" title="M_q = C_{m_q} \frac{\rho V S \bar{c}^2}{4} q" />
+        </div>
+    
+</noscript>
+
+<p>Unlike some of the other longitudinal moments, like the moment due to alpha which relates to static
+stability, the pitch rate moment in addition to being proportional to the dynamic pressure is also
+inversely proportional to the TAS.</p>
+<p>As the TAS increases the change in the tailplane&rsquo;s angle of attack for the same pitch rate is smaller.</p>
+<p><img src="/images/pitch-rate-damping-jsbsim-test/pitchdamping2.png" alt="image alt text"></p>
+<p>This means that flying at the same IAS (same dynamic pressure) at different altitudes results in a
+different pitch rate damping, i.e. for the same IAS at a higher altitude the pilot will experience
+less pitch rate damping.</p>
+<p>I&rsquo;m going to test this out in JSBSim with the Boeing 737 model. Here is the relevant snippet from the
+737&rsquo;s aerodynamics section for specifying the aerodynamic moments. In this case 
+<span class="jsonly">
+                  
+        \(C_{m_q}\)
+    
+</span>
+<noscript>
+                  
+        <img style="display:inline;vertical-align:middle;" src="https://latex.codecogs.com/gif.latex?\inline&space;C_%7bm_q%7d" title="C_{m_q}" />
+    
+</noscript>
+
+has a value of -27.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;function</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;aero/coefficient/Cmq&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;description&gt;</span>Pitch_moment_due_to_pitch_rate<span style="color:#f92672">&lt;/description&gt;</span>
+    <span style="color:#f92672">&lt;product&gt;</span>
+        <span style="color:#f92672">&lt;property&gt;</span>aero/qbar-psf<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property&gt;</span>metrics/Sw-sqft<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property&gt;</span>metrics/cbarw-ft<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property&gt;</span>aero/ci2vel<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property&gt;</span>velocities/q-aero-rad_sec<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;value&gt;</span>-27.0<span style="color:#f92672">&lt;/value&gt;</span>
+    <span style="color:#f92672">&lt;/product&gt;</span>
+<span style="color:#f92672">&lt;/function&gt;</span>
+</code></pre></div><p>The aircraft is trimmed at an IAS of 250kt at 3,000ft and then an elevator step input is applied.
+The same test is then performed at 30,000ft.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">   Altitude    IAS      TAS      Mq <span style="color:#f92672">(</span>lb.ft per <span style="color:#ae81ff">1</span> degree/s pitch rate<span style="color:#f92672">)</span>
+   3,000ft     250kt    261kt    -20,016
+   30,000ft    250kt    393kt    -12,369
+</code></pre></div><p>So the pitch rate damping moment at 30,000ft is approximately 62% of the pitch rate damping
+motion at 3,000ft.</p>
+<p>Now for some graphs comparing the response of the aircraft to the same elevator step input
+at 3,000ft and at 30,000ft.</p>
+<p><img src="/images/pitch-rate-damping-jsbsim-test/pitchdamping-pitchrate.png" alt="image alt text"></p>
+<p>With lower pitch rate damping moment the aircraft&rsquo;s pitch rate increases more rapidly at
+30,000ft and achieves a higher maximum pitch rate.</p>
+<p><img src="/images/pitch-rate-damping-jsbsim-test/pitchdamping-pitchangle.png" alt="image alt text"></p>
+<p>The pitch angle also increases more rapidly at 30,000ft.</p>
+<p><img src="/images/pitch-rate-damping-jsbsim-test/pitchdamping-alpha.png" alt="image alt text"></p>
+<p>The lower pitch rate damping at 30,000ft also means that the angle of attack increases at a
+faster rate at 30,000ft compared to at 3,000ft.</p>
+<p>The higher alpha will result in a greater 
+<span class="jsonly">
+                  
+        \(C_{m_\alpha}\)
+    
+</span>
+<noscript>
+                  
+        <img style="display:inline;vertical-align:middle;" src="https://latex.codecogs.com/gif.latex?\inline&space;C_%7bm_%5calpha%7d" title="C_{m_\alpha}" />
+    
+</noscript>
+ restoring moment diminishing the lower
+pitch rate damping moment to some degree.</p>
+
+<span class="jsonly">
+     
+        $$M_\alpha = \frac{1}{2} \rho V^2 S \bar{c} C_{m_\alpha} \alpha$$
+    
+</span>
+<noscript>
+     
+        <div style="text-align:center;">
+            <img src="https://latex.codecogs.com/gif.latex?M_%5calpha%20%3d%20%5cfrac%7b1%7d%7b2%7d%20%5crho%20V%5e2%20S%20%5cbar%7bc%7d%20C_%7bm_%5calpha%7d%20%5calpha" title="M_\alpha = \frac{1}{2} \rho V^2 S \bar{c} C_{m_\alpha} \alpha" />
+        </div>
+    
+</noscript>
+
+<p>An illustration of the various pitching moments for the aircraft at 30,000ft.</p>
+<p><img src="/images/pitch-rate-damping-jsbsim-test/pitchdamping-pitchingmoments.png" alt="image alt text"></p>
+<p>The reason the net moment isn&rsquo;t exactly 0 while the aircraft is in trim up until the elevator step input at
+time 1.0 is because the aerodynamic reference point (AeroRP) for the aerodynamic forces and moments isn&rsquo;t
+coincident with the cg, in addition to other pitching moments from the engines for example.</p>
+
+
+    
+
+    
+    
+    <script>renderMathInElement(document.body);</script>
+    
+
+    
+    <hr>
+    <footer>
+
+        
+          <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fseanmcleod.github.io%2f2018%2f02%2fpitch-rate-damping-jsbsim-test%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fseanmcleod.github.io%2f2018%2f02%2fpitch-rate-damping-jsbsim-test%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fseanmcleod.github.io%2f2018%2f02%2fpitch-rate-damping-jsbsim-test%2f&amp;text=Pitch%20Rate%20Damping%20-%20JSBSim%20Test" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+        
+
+        
+    </footer>
+    
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p dir="auto">Semi-random posts on technology and aviation.</p>
+  </section>
+  
+
+  
+        <section class="sidebar-module">
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+
+
+<li style="margin-bottom:8px;" ><a href="/2018/06/camera-tracking-of-aircraft-control-positions/">Camera Tracking of Aircraft Control Positions</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/05/extra-300-spin/">Extra 300 Spin</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/homebrew-fti/">Homebrew FTI</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/landing-ground-effect-flare-jsbsim/">Landing - Ground Effect, Flare - JSBSim</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/02/pitch-rate-damping-jsbsim-test/">Pitch Rate Damping - JSBSim Test</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2018/01/max-q-maximum-dynamic-pressure/">Max Q - Maximum Dynamic Pressure</a></li>
+
+<li style="margin-bottom:8px;" ><a href="/2008/06/geeks-and-fast-jets/">Geeks and Fast Jets</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+</aside>
+
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>
