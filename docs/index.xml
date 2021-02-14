@@ -144,5 +144,15 @@ I&amp;rsquo;m using a trial version of Photomatix to perform the HDR processing 
 I set the auto-bracketing option on the camera to shoot a normal exposure, a -2 stop exposure and a +2 stop exposure.</description>
     </item>
     
+    <item>
+      <title>Windows Desktop Search Powershell Cmdlet</title>
+      <link>https://seanmcleod.github.io/1/01/windows-desktop-search-powershell-cmdlet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://seanmcleod.github.io/1/01/windows-desktop-search-powershell-cmdlet/</guid>
+      <description>Microsoft are introducing a new command line shell named PowerShell, previously known as Monad. The main difference between PowerShell and other shells like cmd, bash, ksh etc. is the pipelining and processing of objects as opposed to plain text.
+I had previously used the Windows Desktop Search API to write a music browser and thought it would be useful to create a Windows Desktop Search Powershell cmdlet to allow users to query their search index from the command line.</description>
+    </item>
+    
   </channel>
 </rss>
