@@ -41,3 +41,10 @@ git push
 The git push to github will kick off a process on github to publish the changes.
 
 Profit.
+
+# Useful Links
+
+https://www.overleaf.com/learn/latex/Mathematical_expressions
+
+
+
