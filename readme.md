@@ -3,7 +3,7 @@
 Generate a new post.
 
 ```sh
-hugo new post/post-name.md
+hugo new posts/post-name.md
 ```
 
 If post has images then create an image directory for it.

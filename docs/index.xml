@@ -6,7 +6,17 @@
     <description>Recent content on Sean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jun 2018 23:05:27 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Jun 2021 09:32:16 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Aircraft Carrier Flight Path Angles</title>
+      <link>https://seanmcleod.github.io/2021/06/aircraft-carrier-flight-path-angles/</link>
+      <pubDate>Wed, 09 Jun 2021 09:32:16 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2021/06/aircraft-carrier-flight-path-angles/</guid>
+      <description>From the LSO NATOPS manual.
+4.2.7 Effective Glideslope Due to Wind and Deck Motion The glideslope angle, referred to as the basic angle aboard ship, is the fixed pitch angle around which the lens assembly stabilizes. A basic angle setting of 3.5° is most commonly used, with 4° used for higher wind-over-deck conditions (38+ knots) or on the small decks when hook-to-ramp clearance is near the 10-foot minimum.</description>
+    </item>
+    
     <item>
       <title>Camera Tracking of Aircraft Control Positions</title>
       <link>https://seanmcleod.github.io/2018/06/camera-tracking-of-aircraft-control-positions/</link>
