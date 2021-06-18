@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Sean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Jun 2021 09:32:16 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Jun 2021 19:22:50 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Inverted Trim</title>
+      <link>https://seanmcleod.github.io/2021/06/inverted-trim/</link>
+      <pubDate>Fri, 18 Jun 2021 19:22:50 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2021/06/inverted-trim/</guid>
+      <description>Recently Agostino De Marco posted a video of a Red Bull sponsored aerobatic aircraft flying inverted above a Red Bull Formula 1 car and asked for a guess of the angle of attack (AoA) of the aircraft.
+In particular the sign convention for AoA when the aircraft is inverted.
+I decided to test out JSBSim to confirm that all the sign conventions worked out in terms of being able to fly the aircraft inverted in trim etc.</description>
+    </item>
+    
     <item>
       <title>Aircraft Carrier Flight Path Angles</title>
       <link>https://seanmcleod.github.io/2021/06/aircraft-carrier-flight-path-angles/</link>
