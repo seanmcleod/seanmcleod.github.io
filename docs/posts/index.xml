@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Sean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Jun 2021 19:22:50 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Contact - sean at seanmcleod dot com</copyright>
+    <lastBuildDate>Sat, 26 Mar 2022 19:23:40 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>5th Generation Homebrew FTI</title>
+      <link>https://seanmcleod.github.io/2022/03/5th-generation-homebrew-fti/</link>
+      <pubDate>Sat, 26 Mar 2022 19:23:40 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2022/03/5th-generation-homebrew-fti/</guid>
+      <description>The very first generation was described in my Geeks and Fast Jets post. Generations 2, 3 and 4 were described in the Homebrew FTI post. This post describes the 5th generation of the FTI system.
+One of the reasons for a new generation was because the price of the Rockwell-Collins ADAHRS+GPS unit had shot up from an original price of $5,500 to $12,000 in the intervening years since the 4th generation unit was developed.</description>
+    </item>
+    
     <item>
       <title>Inverted Trim</title>
       <link>https://seanmcleod.github.io/2021/06/inverted-trim/</link>
@@ -34,6 +45,15 @@ I decided to test out JSBSim to confirm that all the sign conventions worked out
       <pubDate>Sat, 02 Jun 2018 23:05:27 +0200</pubDate>
       
       <guid>https://seanmcleod.github.io/2018/06/camera-tracking-of-aircraft-control-positions/</guid>
+      <description>The standard method of tracking the aircraft&amp;rsquo;s control positions as the pilot moves the controls for flight test instrumentation (FTI) purposes is to attach string potentiometers (string pots) to the control cables/rods. As the control cable/rod moves based on the pilot&amp;rsquo;s inputs a spring loaded thin steel wire is reeled in or out of the string pot.</description>
+    </item>
+    
+    <item>
+      <title>Pixycam Helicopters</title>
+      <link>https://seanmcleod.github.io/2018/05/pixycam-helicopters/</link>
+      <pubDate>Sun, 20 May 2018 23:05:27 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/05/pixycam-helicopters/</guid>
       <description>The standard method of tracking the aircraft&amp;rsquo;s control positions as the pilot moves the controls for flight test instrumentation (FTI) purposes is to attach string potentiometers (string pots) to the control cables/rods. As the control cable/rod moves based on the pilot&amp;rsquo;s inputs a spring loaded thin steel wire is reeled in or out of the string pot.</description>
     </item>
     

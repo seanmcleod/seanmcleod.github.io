@@ -5,7 +5,7 @@ languageCode = "en-us"
 title = "Sean's Blog"
 theme = "hugo-theme-bootstrap4-blog"
 # number of posts to show on home/category/tag pages (Default: 10)
-paginate = 5
+paginate = 10
 # number of words to use for summary on home/category/tag pages (Default: 70)
 summaryLength = 50
 
@@ -13,6 +13,7 @@ publishDir = "docs"
 
 # optionally override the site's footer with custom copyright text
 #copyright = "Except where otherwise noted, content on this site is licensed under a [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/)."
+copyright = "Contact - sean at seanmcleod dot com"
 
 [permalinks]
   posts = "/:year/:month/:title/"
@@ -77,5 +78,5 @@ publishDir = "docs"
     about = "Semi-random posts on technology and aviation."
 
     # How many posts to show on the sidebar (Default: 5)
-    num_recent_posts = 20
+    num_recent_posts = 25
 
