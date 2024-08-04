@@ -58,6 +58,15 @@ I decided to test out JSBSim to confirm that all the sign conventions worked out
     </item>
     
     <item>
+      <title>Blob Tracking</title>
+      <link>https://seanmcleod.github.io/2018/05/blob-tracking/</link>
+      <pubDate>Sat, 19 May 2018 23:05:27 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2018/05/blob-tracking/</guid>
+      <description>The standard method of tracking the aircraft&amp;rsquo;s control positions as the pilot moves the controls for flight test instrumentation (FTI) purposes is to attach string potentiometers (string pots) to the control cables/rods. As the control cable/rod moves based on the pilot&amp;rsquo;s inputs a spring loaded thin steel wire is reeled in or out of the string pot.</description>
+    </item>
+    
+    <item>
       <title>Extra 300 Spin</title>
       <link>https://seanmcleod.github.io/2018/05/extra-300-spin/</link>
       <pubDate>Thu, 17 May 2018 23:36:47 +0200</pubDate>
