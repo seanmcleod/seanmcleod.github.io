@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Contact - sean at seanmcleod dot com</copyright>
-    <lastBuildDate>Sat, 26 Mar 2022 19:23:40 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Aug 2024 11:55:31 +0200</lastBuildDate><atom:link href="https://seanmcleod.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>X-15 Max Q</title>
+      <link>https://seanmcleod.github.io/2024/08/x-15-max-q/</link>
+      <pubDate>Mon, 12 Aug 2024 11:55:31 +0200</pubDate>
+      
+      <guid>https://seanmcleod.github.io/2024/08/x-15-max-q/</guid>
+      <description>I previously wrote about Max Q - Maximum Dynamic Pressure comparing the Max Q experienced by a SpaceX rocket during launch, the Space Shuttle and a typical airliner. Now let&amp;rsquo;s take a look at the Max Q that was experienced by the X-15 while it went about setting various speed and altitude records during it&amp;rsquo;s research.</description>
+    </item>
+    
     <item>
       <title>5th Generation Homebrew FTI</title>
       <link>https://seanmcleod.github.io/2022/03/5th-generation-homebrew-fti/</link>
